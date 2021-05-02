@@ -1,8 +1,7 @@
 package fri.uniza.sk.mikulik6.koronaSlayer.postavy
 
 import fri.uniza.sk.mikulik6.koronaSlayer.hlavny.Akcia
-import fri.uniza.sk.mikulik6.koronaSlayer.karty.typyKariet.AntibakterialnaUtociacaKarta
-import fri.uniza.sk.mikulik6.koronaSlayer.karty.typyKariet.Karta
+import fri.uniza.sk.mikulik6.koronaSlayer.karty.typyKariet.*
 import fri.uniza.sk.mikulik6.koronaSlayer.mapa.Mapa
 import fri.uniza.sk.mikulik6.koronaSlayer.npc.ChorobaNpc
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.NedostatocnyPocetManyException
@@ -63,7 +62,8 @@ abstract class Postava(val meno: String, pZdravie: Int) {
 
     fun chodDoDalsejMiestnosti(mapa: Mapa, cislo: Int) {
         this.akcia = Akcia.HRANIE_KARIET;
-        this.nepriatel = mapa.getNpc(this.aktualnyLevel, cislo);
+        //this.nepriatel = mapa.getNpc(this.aktualnyLevel, cislo);
+        this.nepriatel = mapa.levely[this.aktualnyLevel]
     }
 
     fun zabilSiNepriatela() {
@@ -75,7 +75,7 @@ abstract class Postava(val meno: String, pZdravie: Int) {
         ultimateTokens++
     }
 
-    fun noveKolo() {
+    open fun noveKolo() {
         mana = 3
         blok = 0
     }
@@ -92,7 +92,7 @@ abstract class Postava(val meno: String, pZdravie: Int) {
 
         while (pocitadlo < 10) {
             if (pocitadlo < 3) {
-                this.balicekKariet.add(AntibakterialnaUtociacaKarta("Penicilin", "Vhodny proti bakteriam", 1, 5));
+                this.balicekKariet.add(AntibakterialnaUtociacaKarta("Peniclin", "Vhodny proti bakteriam", 1, 5))
             } else if (pocitadlo < 6) {
                 this.balicekKariet.add(AntivirusovaUtociacaKarta("Ibalgin", "Vhodny proti virusom", 1, 5));
             } else if (pocitadlo < 8) {

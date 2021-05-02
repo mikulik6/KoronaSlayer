@@ -13,10 +13,10 @@
         android:layout_height="wrap_content">
     
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/uvodnaStranaConstraint"
+            android:id="@+id/mapaHryConstraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".ui.game.GameFragment">
+            tools:context=".MapaHryFragment">
 
 
             <Button
