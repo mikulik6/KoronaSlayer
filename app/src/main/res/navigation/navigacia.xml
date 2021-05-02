@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigacia"
+    app:startDestination="@id/uvodnaStranaFragment"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <fragment
+        android:id="@+id/uvodnaStranaFragment"
+        android:name="fri.uniza.sk.mikulik6.koronaSlayer.UvodnaStranaFragment"
+        android:label="UvodnaStranaFragment"
+        tools:layout="@layout/fragment_uvodna_strana">
+        <action
+            android:id="@+id/action_uvodnaStranaFragment_to_mapaHryFragment"
+            app:destination="@id/mapaHryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapaHryFragment"
+        android:name="fri.uniza.sk.mikulik6.koronaSlayer.MapaHryFragment"
+        android:label="MapaHryFragment"
+        tools:layout="@layout/fragment_mapa_hry"/>
+</navigation>
