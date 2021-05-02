@@ -11,12 +11,30 @@
         android:label="UvodnaStranaFragment"
         tools:layout="@layout/fragment_uvodna_strana">
         <action
-            android:id="@+id/action_uvodnaStranaFragment_to_mapaHryFragment"
-            app:destination="@id/mapaHryFragment" />
+            android:id="@+id/action_uvodnaStranaFragment_to_novaHraFragment"
+            app:destination="@id/novaHraFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapaHryFragment"
         android:name="fri.uniza.sk.mikulik6.koronaSlayer.MapaHryFragment"
         android:label="MapaHryFragment"
-        tools:layout="@layout/fragment_mapa_hry"/>
+        tools:layout="@layout/fragment_mapa_hry">
+        <action
+            android:id="@+id/action_mapaHryFragment_to_bojFragment"
+            app:destination="@id/bojFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/novaHraFragment"
+        android:name="fri.uniza.sk.mikulik6.koronaSlayer.NovaHraFragment"
+        android:label="NovaHraFragment"
+        tools:layout="@layout/fragment_nova_hra">
+        <action
+            android:id="@+id/action_novaHraFragment_to_mapaHryFragment"
+            app:destination="@id/mapaHryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bojFragment"
+        android:name="fri.uniza.sk.mikulik6.koronaSlayer.BojFragment"
+        android:label="BojFragment"
+        tools:layout="@layout/fragment_boj"/>
 </navigation>

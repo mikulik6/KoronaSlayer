@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="hraViewModel"
+            type="fri.uniza.sk.mikulik6.koronaSlayer.HraViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bojConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".BojFragment">
+
+        <Button
+            android:id="@+id/karta1Tlacidlo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="@{hraViewModel.riadicKariet.hratelneKarty[0].nazov}"
+            app:layout_constraintBottom_toTopOf="@+id/karta3Tlacidlo"
+            app:layout_constraintEnd_toStartOf="@+id/karta2Tlacidlo"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="1 Karta" />
+
+        <Button
+            android:id="@+id/karta2Tlacidlo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:text="@{hraViewModel.riadicKariet.hratelneKarty[1].nazov}"
+            app:layout_constraintBottom_toBottomOf="@+id/karta1Tlacidlo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/karta1Tlacidlo"
+            tools:text="2 karta" />
+
+        <Button
+            android:id="@+id/karta3Tlacidlo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="@{hraViewModel.riadicKariet.hratelneKarty[2].nazov}"
+            app:layout_constraintBottom_toTopOf="@+id/karta5Tlacidlo"
+            app:layout_constraintEnd_toStartOf="@+id/karta4Tlacidlo"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="3 karta" />
+
+        <Button
+            android:id="@+id/karta4Tlacidlo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:text="@{hraViewModel.riadicKariet.hratelneKarty[3].nazov}"
+            app:layout_constraintBottom_toBottomOf="@+id/karta3Tlacidlo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/karta3Tlacidlo"
+            tools:text="4 karta" />
+
+        <Button
+            android:id="@+id/karta5Tlacidlo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="20dp"
+            android:text="@{hraViewModel.riadicKariet.hratelneKarty[4].nazov}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ukoncenieKolaTlacidlo"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="5 karta" />
+
+        <Button
+            android:id="@+id/ukoncenieKolaTlacidlo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/ukoncenieKola"
+            app:layout_constraintBottom_toBottomOf="@+id/karta5Tlacidlo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/karta5Tlacidlo"
+            tools:text="ukonecnie kola" />
+
+        <TextView
+            android:id="@+id/zivotyHraca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/zivotyHraca(hraViewModel.hrac.zdravie, hraViewModel.hrac.maxZdravie)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Zivoty" />
+
+        <TextView
+            android:id="@+id/manaHraca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/manaHraca(hraViewModel.hrac.mana)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Mana" />
+
+        <TextView
+            android:id="@+id/blokHraca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/blokHraca(hraViewModel.hrac.blok)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Blok" />
+
+        <TextView
+            android:id="@+id/menoNepriatela"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="@{hraViewModel.hrac.nepriatel.meno}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Nazov Nepriatela" />
+
+        <TextView
+            android:id="@+id/zivotyNepriatela"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="225dp"
+            android:text="@{@string/zivotyNepriatela(hraViewModel.hrac.nepriatel.zivoty, hraViewModel.hrac.nepriatel.maxZivoty)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menoNepriatela"
+            tools:text="Zivoty Nepraitela" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
