@@ -13,9 +13,16 @@
     <string name="level_8_tlacidlo">level 8</string>
     <string name="level_9_tlacidlo">level 9</string>
     <string name="level_10_tlacidlo">level 10</string>
+
+    <!--FRAGMENT BOJ -->
     <string name="zivotyHraca">%s/%s</string>
     <string name="manaHraca">%s</string>
     <string name="blokHraca">%s</string>
     <string name="zivotyNepriatela">%s/%s</string>
-    <string name="ukoncenieKola">ukoncit kolo</string>
+    <string name="karta1Tlacidlo">%s\n%s</string>
+    <string name="karta2Tlacidlo">%s\n%s</string>
+    <string name="karta3Tlacidlo">%s\n%s</string>
+    <string name="karta4Tlacidlo">%s\n%s</string>
+    <string name="karta5Tlacidlo">%s\n%s</string>
+    <string name="ukoncenieKola">ukoncit\nkolo</string>
 </resources>

@@ -6,6 +6,7 @@ import fri.uniza.sk.mikulik6.koronaSlayer.hlavny.Akcia
 import fri.uniza.sk.mikulik6.koronaSlayer.karty.typyKariet.*
 import fri.uniza.sk.mikulik6.koronaSlayer.mapa.Mapa
 import fri.uniza.sk.mikulik6.koronaSlayer.npc.ChorobaNpc
+import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.KoniecHracovhoTahuException
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.NedostatocnyPocetManyException
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.SmrtHracaException
 import java.io.Serializable
@@ -75,11 +76,15 @@ abstract class Postava(val meno: String, pZdravie: Int) : Serializable {
     }
 
     fun uberManu(pocetPouzitejMany: Int) {
-        if (_mana.value!! < pocetPouzitejMany) {
-            throw NedostatocnyPocetManyException()
-        }
+        //if (_mana.value!! < pocetPouzitejMany) {
+        //    throw NedostatocnyPocetManyException()
+        //}
 
         _mana.value = (_mana.value)?.minus(pocetPouzitejMany)
+
+        if (_mana.value!! == 0) {
+            throw KoniecHracovhoTahuException()
+        }
     }
 
     fun chodDoDalsejMiestnosti(mapa: Mapa, cislo: Int) {
@@ -113,13 +118,13 @@ abstract class Postava(val meno: String, pZdravie: Int) : Serializable {
 
         while (pocitadlo < 10) {
             if (pocitadlo < 3) {
-                this.balicekKariet.add(AntibakterialnaUtociacaKarta("Peniclin", "Vhodny proti bakteriam", 1, 5))
+                this.balicekKariet.add(AntibakterialnaUtociacaKarta("PENICILIN", "Vhodny proti bakteriam", 1, 5))
             } else if (pocitadlo < 6) {
-                this.balicekKariet.add(AntivirusovaUtociacaKarta("Ibalgin", "Vhodny proti virusom", 1, 5));
+                this.balicekKariet.add(AntivirusovaUtociacaKarta("IBALGIN", "Vhodny proti virusom", 1, 5));
             } else if (pocitadlo < 8) {
-                this.balicekKariet.add(UzdravovaciaKarta("Horuci caj", "Liek ako ziadny iny", 1, 10));
+                this.balicekKariet.add(UzdravovaciaKarta("HORUCI CAJ", "Liek ako ziadny iny", 1, 10));
             } else {
-                this.balicekKariet.add(BlokovaciaKarta("Cibula", "Posilnenie na 1 kolo", 1, 4));
+                this.balicekKariet.add(BlokovaciaKarta("CIBULA", "Posilnenie na 1 kolo", 1, 4));
             }
             pocitadlo++
         }

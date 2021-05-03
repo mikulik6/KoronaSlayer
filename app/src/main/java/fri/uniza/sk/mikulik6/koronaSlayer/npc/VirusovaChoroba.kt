@@ -6,7 +6,7 @@ class VirusovaChoroba(meno: String, utok: Int, pZivoty: Int) : ChorobaNpc(meno, 
     override fun vykonajAkciu(hrac: Postava) {
         val hranica: Int = (maxZivoty * 0.3).toInt()
 
-        if (hranica >= _zivoty) {
+        if (hranica >= _zivoty.value!!) {
             this.zautoc(hrac, (utok * 0.2).toInt())
         } else {
             zautoc(hrac)

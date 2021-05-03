@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_mapaHryFragment_to_bojFragment"
             app:destination="@id/bojFragment" />
+        <action
+            android:id="@+id/action_mapaHryFragment_to_uvodnaStranaFragment"
+            app:destination="@id/uvodnaStranaFragment" />
     </fragment>
     <fragment
         android:id="@+id/novaHraFragment"

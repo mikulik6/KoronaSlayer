@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -20,7 +21,7 @@ class NovaHraFragment : Fragment() {
 
     private val viewModel: HraViewModel by activityViewModels()
     private lateinit var binding: FragmentNovaHraBinding                                                                    //BINDING -> odkazy na XML objekty
-    private val postavy = arrayOf(Lekar(), Sestricka())                                                                     //vytvorenie poľa všetkých postáv
+    private val postavy = arrayOf(Lekar(), Sestricka())
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_nova_hra, container,false)            // Nafúknutie layoutu pre fragment -> vytvorenie výzoru

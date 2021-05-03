@@ -2,6 +2,7 @@ package fri.uniza.sk.mikulik6.koronaSlayer.karty.riadenie
 
 import fri.uniza.sk.mikulik6.koronaSlayer.karty.typyKariet.Karta
 import fri.uniza.sk.mikulik6.koronaSlayer.postavy.Postava
+import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.KoniecHracovhoTahuException
 import kotlin.random.Random
 
 class RiadicKariet {
@@ -33,13 +34,18 @@ class RiadicKariet {
     fun zahrajKartu(cisloKarty: Int, hrac: Postava) {
         val vybrataKarta = hratelneKarty.get(cisloKarty)
 
-        hrac.uberManu(vybrataKarta.cena)
+        //hrac.uberManu(vybrataKarta.cena)
 
         //hratelneKarty.remove(vybrataKarta)
         zahadzovaciBalicek.add(vybrataKarta)
         vybrataKarta.pouziKartu(hrac)
+        hrac.uberManu(vybrataKarta.cena)
 
         //vynimky pre ukazanie konca hracovho kola ak je mana = 0 alebo niesu hratelne karty
+        // mana == 0 kotrolovana v hracovi
+        if (hratelneKarty.isEmpty()) {
+            throw KoniecHracovhoTahuException()
+        }
     }
 
 

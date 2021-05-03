@@ -10,7 +10,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentBojBinding
 import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentMapaHryBinding
+import fri.uniza.sk.mikulik6.koronaSlayer.npc.BakterialnaChoroba
 import fri.uniza.sk.mikulik6.koronaSlayer.postavy.Sestricka
+import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.KoniecHracovhoTahuException
 
 class BojFragment : Fragment() {
 
@@ -20,42 +22,66 @@ class BojFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_boj, container,false)
 
+        viewModel.riadicKariet.vytvorTahaciBalicek(viewModel.hrac.balicekKariet)
+        zaciatokKola()
+
         //inicializácia DATA BINDING
         binding.hraViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        if (viewModel.hrac.nepriatel is BakterialnaChoroba) {
+            binding.nepriatelObrazok.setImageResource(R.drawable.bakteria)
+        } else {
+            binding.nepriatelObrazok.setImageResource(R.drawable.virus)
+        }
+
+
 
         binding.karta1Tlacidlo.setOnClickListener {
-            viewModel.riadicKariet.zahrajKartu(0, viewModel.hrac)
             binding.karta1Tlacidlo.visibility = View.INVISIBLE
+            kliknutieTlacidlaKarty(0)
         }
         binding.karta2Tlacidlo.setOnClickListener {
-            viewModel.riadicKariet.zahrajKartu(1, viewModel.hrac)
             binding.karta2Tlacidlo.visibility = View.INVISIBLE
+            kliknutieTlacidlaKarty(1)
         }
         binding.karta3Tlacidlo.setOnClickListener {
-            viewModel.riadicKariet.zahrajKartu(2, viewModel.hrac)
             binding.karta3Tlacidlo.visibility = View.INVISIBLE
+            kliknutieTlacidlaKarty(2)
         }
         binding.karta4Tlacidlo.setOnClickListener {
-            viewModel.riadicKariet.zahrajKartu(3, viewModel.hrac)
             binding.karta4Tlacidlo.visibility = View.INVISIBLE
+            kliknutieTlacidlaKarty(3)
         }
         binding.karta5Tlacidlo.setOnClickListener {
-            viewModel.riadicKariet.zahrajKartu(4, viewModel.hrac)
             binding.karta5Tlacidlo.visibility = View.INVISIBLE
+            kliknutieTlacidlaKarty(4)
         }
+
+
         binding.ukoncenieKolaTlacidlo.setOnClickListener {
-
+            zaciatokKola()
         }
 
-        zaciatokKola()
         return binding.root
     }
 
     private fun zaciatokKola() {
-        viewModel.riadicKariet.vytvorTahaciBalicek(viewModel.hrac.balicekKariet)
+        binding.karta1Tlacidlo.visibility = View.VISIBLE
+        binding.karta2Tlacidlo.visibility = View.VISIBLE
+        binding.karta3Tlacidlo.visibility = View.VISIBLE
+        binding.karta4Tlacidlo.visibility = View.VISIBLE
+        binding.karta5Tlacidlo.visibility = View.VISIBLE
+
         viewModel.riadicKariet.noveKolo()
         viewModel.hrac.noveKolo()
+    }
+
+    private fun kliknutieTlacidlaKarty(cisloKarty: Int) {
+        try {
+            viewModel.riadicKariet.zahrajKartu(cisloKarty, viewModel.hrac)
+        } catch (e: KoniecHracovhoTahuException) {
+            zaciatokKola()
+        }
     }
 }

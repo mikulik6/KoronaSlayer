@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
@@ -33,6 +34,9 @@ class MapaHryFragment : Fragment() {
         binding.level8Tlacidlo.setOnClickListener { hracDoDalsejMiestnosti(8) }
         binding.level9Tlacidlo.setOnClickListener { hracDoDalsejMiestnosti(9) }
         binding.level10Tlacidlo.setOnClickListener { hracDoDalsejMiestnosti(10) }
+
+        binding.topAppBar.setNavigationOnClickListener { findNavController().navigate(R.id.action_mapaHryFragment_to_uvodnaStranaFragment) }
+        binding.topAppBar.overflowIcon
 
         return binding.root
     }
