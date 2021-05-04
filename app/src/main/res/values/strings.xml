@@ -2,7 +2,7 @@
     <string name="app_name">koronaSlayer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="spustenie_hry_tlacidlo">Spustenie hry</string>
+
     <string name="level_1_tlacidlo">level 1</string>
     <string name="level_2_tlacidlo">level 2</string>
     <string name="level_3_tlacidlo">level3</string>
@@ -13,6 +13,10 @@
     <string name="level_8_tlacidlo">level 8</string>
     <string name="level_9_tlacidlo">level 9</string>
     <string name="level_10_tlacidlo">level 10</string>
+
+    <!--FRAGMENT UVODNA STRANA -->
+    <string name="pokracovatVHre">pokračovať v hre</string>
+    <string name="novaHra">nová hra</string>
 
     <!--FRAGMENT BOJ -->
     <string name="zivotyHraca">%s/%s</string>
@@ -25,4 +29,10 @@
     <string name="karta4Tlacidlo">%s\n%s</string>
     <string name="karta5Tlacidlo">%s\n%s</string>
     <string name="ukoncenieKola">ukoncit\nkolo</string>
+
+    <!--FRAGMENT NOVA HRA -->
+    <string name="maxZivoty">Životy: %s</string>
+    <string name="maxMana">Mana: %s</string>
+    <string name="pasivnaSchopnost">Pasívna schopnosť:\n%s</string>
+
 </resources>

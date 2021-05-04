@@ -21,11 +21,26 @@ class NovaHraFragment : Fragment() {
 
     private val viewModel: HraViewModel by activityViewModels()
     private lateinit var binding: FragmentNovaHraBinding                                                                    //BINDING -> odkazy na XML objekty
-    private val postavy = arrayOf(Lekar(), Sestricka())
+    val postavy = arrayOf(Lekar(), Sestricka())
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_nova_hra, container,false)            // Nafúknutie layoutu pre fragment -> vytvorenie výzoru
 
+        binding.postava1 = postavy[0]
+        binding.postava2 = postavy[1]
+
+        binding.novaHraAppBar.setNavigationOnClickListener { findNavController().navigate(R.id.action_novaHraFragment_to_uvodnaStranaFragment) }
+
+        binding.postava1Constraint.setOnClickListener {
+            viewModel.nastavPostavu(postavy[0])
+            findNavController().navigate(R.id.action_novaHraFragment_to_mapaHryFragment)
+        }
+        binding.postava2Constraint.setOnClickListener {
+            viewModel.nastavPostavu(postavy[1])
+            findNavController().navigate(R.id.action_novaHraFragment_to_mapaHryFragment)
+        }
+
+        /*
         binding.button2.text = postavy[0].meno
         binding.button3.text = postavy[1].meno
 
@@ -35,6 +50,7 @@ class NovaHraFragment : Fragment() {
         binding.button3.setOnClickListener {
             viewModel.nastavPostavu(postavy[1])
             findNavController().navigate(R.id.action_novaHraFragment_to_mapaHryFragment)}
+        */
 
         return binding.root
     }

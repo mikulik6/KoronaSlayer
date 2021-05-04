@@ -17,8 +17,14 @@ class HraViewModel : ViewModel() {
     val hrac: Postava
         get() = _hrac
 
+    var bolaVytvorenaHra: Boolean = false
+    //private var _bolaVytvorenaHra: Boolean = false
+    // val bolaVytvorenaHra: Boolean
+    //    get() = _bolaVytvorenaHra
+
     //nastavenie postavy na základe výberu tlačidla na fragmente "NovaHraFragment"
     fun nastavPostavu(vybrataPostava: Postava) {
         _hrac = vybrataPostava
+        bolaVytvorenaHra = true
     }
 }

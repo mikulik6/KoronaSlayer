@@ -1,5 +1,6 @@
 package fri.uniza.sk.mikulik6.koronaSlayer.karty.riadenie
 
+import androidx.lifecycle.LiveData
 import fri.uniza.sk.mikulik6.koronaSlayer.karty.typyKariet.Karta
 import fri.uniza.sk.mikulik6.koronaSlayer.postavy.Postava
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.KoniecHracovhoTahuException
@@ -8,44 +9,49 @@ import kotlin.random.Random
 class RiadicKariet {
 
     private var tahaciBalicek = mutableListOf<Karta>()
-    val hratelneKarty = mutableListOf<Karta>()
-    private val zahadzovaciBalicek = mutableListOf<Karta>()
+    private var zahadzovaciBalicek = mutableListOf<Karta>()
+    private var _hratelneKarty = mutableListOf<Karta>()
+    private var _hratelneKartyLive = mutableListOf<LiveData<Karta>>()
+        val hratelneKarty get() = _hratelneKartyLive
+    //val hratelneKarty: mutableListOf<LiveData<Karta>()
 
 
 
 
 
+
+
+    //Začiatok levelu
     fun vytvorTahaciBalicek(hracovBalicekKariet: MutableList<Karta>) {
-        tahaciBalicek = hracovBalicekKariet
+        //tahaciBalicek = hracovBalicekKariet
+        tahaciBalicek.addAll(hracovBalicekKariet)
     }
 
-    fun koniecLevelu() {
-        tahaciBalicek.clear()
-        hratelneKarty.clear()
-        zahadzovaciBalicek.clear()
-        //vytvorenie kariet pre vyber
-    }
-
+    //Počas levelu
     fun noveKolo() {
         zahodHratelneKarty()
         vytiahniHratelneKarty()
     }
 
+    //Počas levelu
     fun zahrajKartu(cisloKarty: Int, hrac: Postava) {
-        val vybrataKarta = hratelneKarty.get(cisloKarty)
+        val vybrataKarta = _hratelneKarty.get(cisloKarty)
 
-        //hrac.uberManu(vybrataKarta.cena)
-
-        //hratelneKarty.remove(vybrataKarta)
         zahadzovaciBalicek.add(vybrataKarta)
         vybrataKarta.pouziKartu(hrac)
         hrac.uberManu(vybrataKarta.cena)
 
-        //vynimky pre ukazanie konca hracovho kola ak je mana = 0 alebo niesu hratelne karty
-        // mana == 0 kotrolovana v hracovi
-        if (hratelneKarty.isEmpty()) {
+        if (_hratelneKarty.isEmpty()) {
             throw KoniecHracovhoTahuException()
         }
+    }
+
+    //Koniec levelu
+    fun koniecLevelu() {
+        tahaciBalicek.clear()
+        _hratelneKarty.clear()
+        zahadzovaciBalicek.clear()
+        //vytvorenie kariet pre vyber
     }
 
 
@@ -53,8 +59,8 @@ class RiadicKariet {
 
 
     private fun zahodHratelneKarty() {
-        zahadzovaciBalicek.addAll(hratelneKarty)
-        hratelneKarty.clear()
+        zahadzovaciBalicek.addAll(_hratelneKarty)
+        _hratelneKarty.clear()
     }
 
     private fun vytiahniHratelneKarty() {
@@ -67,11 +73,13 @@ class RiadicKariet {
         var i = 0
         while (i < 5){
             if (maxIndexKarty - i > 0) {
-                hratelneKarty.add(tahaciBalicek.removeAt(Random.nextInt(maxIndexKarty - i)))
+                _hratelneKarty.add(tahaciBalicek.removeAt(Random.nextInt(maxIndexKarty - i)))
             } else {
-                hratelneKarty.add(tahaciBalicek.removeAt(0))
+                _hratelneKarty.add(tahaciBalicek.removeAt(0))
             }
             i++
         }
+
+        _hratelneKartyLive.addAll(hratelneKarty)
     }
 }

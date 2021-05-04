@@ -7,15 +7,9 @@ import fri.uniza.sk.mikulik6.koronaSlayer.karty.typyKariet.*
 import fri.uniza.sk.mikulik6.koronaSlayer.mapa.Mapa
 import fri.uniza.sk.mikulik6.koronaSlayer.npc.ChorobaNpc
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.KoniecHracovhoTahuException
-import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.NedostatocnyPocetManyException
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.SmrtHracaException
-import java.io.Serializable
 
-abstract class Postava(val meno: String, pZdravie: Int) : Serializable {
-
-    //NEPOUZITE
-    var ultimateTokens:Int = 0
-    var akcia: Akcia = Akcia.VYBER_MIESTNOSTI
+abstract class Postava(val meno: String, val pasivnaSchopnost: String, pZdravie: Int) {
 
     val maxZdravie: Int = pZdravie                                                                  //Getter v "BojFragment"
     private var _zdravie        = MutableLiveData(pZdravie)
@@ -32,7 +26,7 @@ abstract class Postava(val meno: String, pZdravie: Int) : Serializable {
     //    get() = _aktualnyLevel
     private var _aktualnyLevel = 1
     val aktualnyLevel: Int
-        get() = _aktualnyLevel
+                get() = _aktualnyLevel
 
     var nepriatel: ChorobaNpc? = null
     val balicekKariet = mutableListOf<Karta>()
@@ -45,7 +39,12 @@ abstract class Postava(val meno: String, pZdravie: Int) : Serializable {
 
 
 
-    //Slúži na prijatie útoku (zníženie životov) od NPC o hodnotu útoku zadanú ako parameter.
+    //Začiatok boja -> slúži na nastavenie nepriateľa (na základe mapy a čísla levelu)
+    fun chodDoDalsejMiestnosti(mapa: Mapa) {
+        nepriatel = mapa.levely[_aktualnyLevel - 1]
+    }
+
+    //Počas boja -> Slúži na prijatie útoku (zníženie životov) od NPC o hodnotu útoku zadanú ako parameter.
     fun prijmiUtok(pDamage: Int) {
         var damage: Int = pDamage
         damage -= _blok.value!!
@@ -61,6 +60,7 @@ abstract class Postava(val meno: String, pZdravie: Int) : Serializable {
         _blok.value = 0
     }
 
+    //Počas Boja
     fun uzdravSa(pUzdravenie: Int) {
         var uzdravenie: Int = pUzdravenie
 
@@ -71,15 +71,13 @@ abstract class Postava(val meno: String, pZdravie: Int) : Serializable {
         _zdravie.value = _zdravie.value!! + uzdravenie
     }
 
+    //Počas Boja
     fun pridajBlok(blok: Int) {
         _blok.value = _blok.value!! + blok
     }
 
+    //Počas boja
     fun uberManu(pocetPouzitejMany: Int) {
-        //if (_mana.value!! < pocetPouzitejMany) {
-        //    throw NedostatocnyPocetManyException()
-        //}
-
         _mana.value = (_mana.value)?.minus(pocetPouzitejMany)
 
         if (_mana.value!! == 0) {
@@ -87,32 +85,31 @@ abstract class Postava(val meno: String, pZdravie: Int) : Serializable {
         }
     }
 
-    fun chodDoDalsejMiestnosti(mapa: Mapa, cislo: Int) {
-        akcia = Akcia.HRANIE_KARIET
-        nepriatel = mapa.levely[_aktualnyLevel]
-    }
-
-    fun zabilSiNepriatela() {
-        _aktualnyLevel++
-        nepriatel = null
-        akcia = Akcia.VYBERANIE_KARIET
-        _mana.value = 3
-        _blok.value = 0
-        ultimateTokens++
-    }
-
+    //Počas boja
     open fun noveKolo() {
         _mana.value = 3
         _blok.value = 0
     }
 
-    fun pridajKartu(vybrataKarta: Karta) {
-        balicekKariet.add(vybrataKarta)
-        akcia = Akcia.VYBER_MIESTNOSTI
+
+    //Koniec boja
+    fun zabilSiNepriatela() {
+        _aktualnyLevel++
+        nepriatel = null
+        _mana.value = 3
+        _blok.value = 0
     }
 
-    abstract fun ultimate()
+    //Koniec boja
+    fun pridajKartu(vybrataKarta: Karta) {
+        balicekKariet.add(vybrataKarta)
+    }
 
+
+
+
+
+    //Pri vytvorení postavy
     private fun vytvorZakladnyBalicek() {
         var pocitadlo: Int = 0
 

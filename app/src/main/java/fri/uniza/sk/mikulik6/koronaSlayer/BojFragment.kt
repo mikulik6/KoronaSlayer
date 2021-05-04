@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentBojBinding
 import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentMapaHryBinding
 import fri.uniza.sk.mikulik6.koronaSlayer.npc.BakterialnaChoroba
 import fri.uniza.sk.mikulik6.koronaSlayer.postavy.Sestricka
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.KoniecHracovhoTahuException
+import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.MrtveNpcException
 
 class BojFragment : Fragment() {
 
@@ -34,7 +36,6 @@ class BojFragment : Fragment() {
         } else {
             binding.nepriatelObrazok.setImageResource(R.drawable.virus)
         }
-
 
 
         binding.karta1Tlacidlo.setOnClickListener {
@@ -81,7 +82,12 @@ class BojFragment : Fragment() {
         try {
             viewModel.riadicKariet.zahrajKartu(cisloKarty, viewModel.hrac)
         } catch (e: KoniecHracovhoTahuException) {
+            viewModel.hrac.nepriatel?.vykonajAkciu(viewModel.hrac)
             zaciatokKola()
+        } catch (e: MrtveNpcException) {
+            viewModel.riadicKariet.koniecLevelu()
+            viewModel.hrac.zabilSiNepriatela()
+            findNavController().navigate(R.id.action_bojFragment_to_mapaHryFragment)
         }
     }
 }

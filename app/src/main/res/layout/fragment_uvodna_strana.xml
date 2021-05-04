@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="hraViewModel"
+            type="fri.uniza.sk.mikulik6.koronaSlayer.HraViewModel" />
     </data>
 
 
@@ -14,17 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.game.GameFragment">
-
-
-        <Button
-            android:id="@+id/spustenieHryTlacidlo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/spustenie_hry_tlacidlo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -37,5 +28,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logo_velke" />
+
+        <Button
+            android:id="@+id/pokracovatVHreTlacidlo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/pokracovatVHre"
+            app:layout_constraintBottom_toTopOf="@+id/novaHraTlacidlo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <Button
+            android:id="@+id/novaHraTlacidlo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/novaHra"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pokracovatVHreTlacidlo" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

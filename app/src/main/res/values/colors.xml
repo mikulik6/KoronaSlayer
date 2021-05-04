@@ -20,6 +20,7 @@
     <color name="blueColor">#0d47a1</color>
     <color name="orangeColor">#ff6f00</color>
     <color name="yellowColor">#ffca28</color>
+    <color name="greenColor">#00c853</color>
 
     <color name="secondaryColor">#37474f</color>
     <color name="secondaryLightColor">#62727b</color>

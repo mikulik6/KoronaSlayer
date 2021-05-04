@@ -12,17 +12,49 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentMapaHryBinding
 import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentUvodnaStranaBinding
 import fri.uniza.sk.mikulik6.koronaSlayer.postavy.Sestricka
 
 class UvodnaStranaFragment : Fragment() {
 
+    private val viewModel: HraViewModel by activityViewModels()
+    private lateinit var binding: FragmentUvodnaStranaBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = DataBindingUtil.inflate<FragmentUvodnaStranaBinding>(inflater, R.layout.fragment_uvodna_strana, container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_uvodna_strana, container,false)
+
+        if(!viewModel.bolaVytvorenaHra) {
+            binding.pokracovatVHreTlacidlo.visibility = View.GONE
+        } else {
+            binding.pokracovatVHreTlacidlo.visibility = View.VISIBLE
+        }
+
+
 
         //Nastavenie onClickListenerov
-        binding.spustenieHryTlacidlo.setOnClickListener { view : View -> view.findNavController().navigate(R.id.action_uvodnaStranaFragment_to_novaHraFragment) }
+        binding.pokracovatVHreTlacidlo.setOnClickListener { findNavController().navigate(R.id.action_uvodnaStranaFragment_to_mapaHryFragment) }
+        binding.novaHraTlacidlo.setOnClickListener { novaHra() }
 
         return binding.root
+    }
+
+    private fun novaHra() {
+        if (!viewModel.bolaVytvorenaHra) {
+            findNavController().navigate(R.id.action_uvodnaStranaFragment_to_novaHraFragment)
+        } else {
+            MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Hra už existuje!")
+                    .setMessage("Chceš vytvoriť novú hru?")
+                    .setNegativeButton("Nie") {dialog, which ->
+
+                    }
+                    .setPositiveButton("OK") { dialog, which ->
+                        viewModel.bolaVytvorenaHra = false
+                        findNavController().navigate(R.id.action_uvodnaStranaFragment_to_novaHraFragment)
+                    }
+                    .show()
+        }
     }
 }
