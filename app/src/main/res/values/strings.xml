@@ -25,4 +25,13 @@
     <string name="vyberKartyPopisText">Za odmenu si vyber jednu z nasledjúcich kariet</string>
     <string name="kartaNaVyberTlacidloText">%s: %s</string>
 
+    <!--FRAGMENT PREHRA-->
+    <string name="prehraPopisText">ťa nakoniec %s</string>
+    <string name="prehraMenuText">menu</string>
+    <string name="prehraNovaHraText">nová hra</string>
+
+    <!--FRAGMENT VYHRA-->
+    <string name="vyhraGratulaciaText">Gratulujem</string>
+    <string name="vyhraPopisText">podarilo sa ti poraziť KORONU</string>
+
 </resources>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/vyhraConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".VyhraFragment">
+
+        <TextView
+            android:id="@+id/vyhraGratulaciaText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/vyhraGratulaciaText"
+            android:textAllCaps="true"
+            android:textColor="@color/greenColor"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/vyhraPopisText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/vyhraPopisText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vyhraGratulaciaText" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/vyhraMenuTlacidlo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vyhraPopisText"
+            app:tint="@color/whiteColor"
+            tools:src="@tools:sample/avatars" />
+
+        <Button
+            android:id="@+id/vyhraMenuTlacidlo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/prehraMenuText"
+            app:layout_constraintBottom_toTopOf="@+id/vyhraNovaHraTlacidlo"
+            app:layout_constraintEnd_toEndOf="@+id/vyhraNovaHraTlacidlo"
+            app:layout_constraintStart_toStartOf="@+id/vyhraNovaHraTlacidlo" />
+
+        <Button
+            android:id="@+id/vyhraNovaHraTlacidlo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/prehraNovaHraText"
+            android:backgroundTint="@color/orangeColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

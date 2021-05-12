@@ -17,6 +17,7 @@ import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentBojBinding
 import fri.uniza.sk.mikulik6.koronaSlayer.npc.BakterialnaChoroba
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.KoniecHracovhoTahuException
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.MrtveNpcException
+import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.SmrtHracaException
 
 class BojFragment : Fragment(){
 
@@ -58,8 +59,7 @@ class BojFragment : Fragment(){
             kliknutieTlacidlaKarty(4)
         }
         binding.ukoncenieKolaTlacidlo.setOnClickListener {
-            viewModel.hrac.nepriatel?.vykonajAkciu(viewModel.hrac)
-            zaciatokKola()
+            kliknutieTlacidlaUkoncenieKola()
         }
 
         //Nastavenie vyskocenia dialogoveho okna na BACK_BUTTON_CLICK
@@ -103,13 +103,29 @@ class BojFragment : Fragment(){
         try {
             viewModel.riadicKariet.zahrajKartu(cisloKarty, viewModel.hrac)
         } catch (e: KoniecHracovhoTahuException) {
+            try {
+                viewModel.hrac.nepriatel?.vykonajAkciu(viewModel.hrac)
+                zaciatokKola()
+            } catch (e: SmrtHracaException) {
+                findNavController().navigate(R.id.action_bojFragment_to_prehraFragment)
+            }
+        } catch (e: MrtveNpcException) {
+            if (viewModel.hrac.aktualnyLevel == viewModel.mapa.levely.size) {
+                findNavController().navigate(R.id.action_bojFragment_to_vyhraFragment)
+            } else {
+                viewModel.riadicKariet.koniecLevelu()
+                viewModel.hrac.zabilSiNepriatela()
+                findNavController().navigate(R.id.action_bojFragment_to_vyberKartyFragment)
+            }
+        }
+    }
+
+    private fun kliknutieTlacidlaUkoncenieKola() {
+        try {
             viewModel.hrac.nepriatel?.vykonajAkciu(viewModel.hrac)
             zaciatokKola()
-        } catch (e: MrtveNpcException) {
-            //findNavController().navigate(R.id.action_bojFragment_to_mapaHryFragment)
-            viewModel.riadicKariet.koniecLevelu()
-            viewModel.hrac.zabilSiNepriatela()
-            findNavController().navigate(R.id.action_bojFragment_to_vyberKartyFragment)
+        } catch (e: SmrtHracaException) {
+            findNavController().navigate(R.id.action_bojFragment_to_prehraFragment)
         }
     }
 }

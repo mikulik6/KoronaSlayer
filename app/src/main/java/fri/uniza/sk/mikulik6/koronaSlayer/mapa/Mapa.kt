@@ -5,16 +5,16 @@ import fri.uniza.sk.mikulik6.koronaSlayer.npc.VirusovaChoroba
 
 class Mapa {
     val levely = arrayOf(
-        BakterialnaChoroba("Kašeľ", 3, 16),
-        VirusovaChoroba("Chrípka", 6,25),
-        BakterialnaChoroba("Lepra", 10, 25),
-        BakterialnaChoroba("Mor", 15, 40),
-        VirusovaChoroba("Hepatitída-B", 14, 28),
-        VirusovaChoroba("Encefalitída", 17, 31),
-        VirusovaChoroba("Ebola", 13, 100),
-        BakterialnaChoroba("Cholera", 18, 40),
-        VirusovaChoroba("Spolík", 25, 26),
-        VirusovaChoroba("Korona", 40, 134)
+        BakterialnaChoroba("Kašeľ", 3, 16, true),
+        VirusovaChoroba("Chrípka", 6,25, false),
+        BakterialnaChoroba("Lepra", 10, 25, false),
+        BakterialnaChoroba("Mor", 15, 40, true),
+        VirusovaChoroba("Hepatitída-B", 14, 28, false),
+        VirusovaChoroba("Encefalitída", 17, 31, false),
+        VirusovaChoroba("Ebola", 13, 100, false),
+        BakterialnaChoroba("Cholera", 18, 40, false),
+        VirusovaChoroba("Soplík", 25, 26, true),
+        VirusovaChoroba("Korona", 15, 134, false)
     )
     val pocetLevelov = levely.size
 

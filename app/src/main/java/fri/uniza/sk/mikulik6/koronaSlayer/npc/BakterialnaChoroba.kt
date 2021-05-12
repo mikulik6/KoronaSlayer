@@ -2,7 +2,7 @@ package fri.uniza.sk.mikulik6.koronaSlayer.npc
 
 import fri.uniza.sk.mikulik6.koronaSlayer.postavy.Postava
 
-class BakterialnaChoroba(meno: String, utok: Int, pZivoty: Int) : ChorobaNpc(meno, utok, pZivoty) {
+class BakterialnaChoroba(meno: String, utok: Int, pZivoty: Int, pMuzskyRod: Boolean) : ChorobaNpc(meno, utok, pZivoty, pMuzskyRod) {
 
     override fun vykonajAkciu(hrac: Postava) {
         val hranica: Int = (maxZivoty * 0.3).toInt()

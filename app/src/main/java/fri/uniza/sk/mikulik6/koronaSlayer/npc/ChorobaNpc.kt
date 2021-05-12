@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import fri.uniza.sk.mikulik6.koronaSlayer.postavy.Postava
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.MrtveNpcException
 
-abstract class ChorobaNpc(val meno: String, protected val utok: Int, pZivoty: Int) {
+abstract class ChorobaNpc(val meno: String, protected val utok: Int, pZivoty: Int, val muzskyRod: Boolean) {
 
     val maxZivoty: Int = pZivoty
     protected var _zivoty = MutableLiveData(pZivoty)

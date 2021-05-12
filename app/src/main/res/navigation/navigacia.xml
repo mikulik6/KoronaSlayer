@@ -59,6 +59,15 @@
             android:id="@+id/action_bojFragment_to_vyberKartyFragment"
             app:destination="@id/vyberKartyFragment"
             app:popUpTo="@id/mapaHryFragment" />
+        <action
+            android:id="@+id/action_bojFragment_to_prehraFragment"
+            app:destination="@id/prehraFragment"
+            app:popUpTo="@id/uvodnaStranaFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_bojFragment_to_vyhraFragment"
+            app:destination="@id/vyhraFragment"
+            app:popUpTo="@id/uvodnaStranaFragment" />
     </fragment>
     <fragment
         android:id="@+id/vyberKartyFragment"
@@ -70,5 +79,35 @@
             app:destination="@id/mapaHryFragment"
             app:popUpTo="@id/mapaHryFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/prehraFragment"
+        android:name="fri.uniza.sk.mikulik6.koronaSlayer.PrehraFragment"
+        android:label="PrehraFragment"
+        tools:layout="@layout/fragment_prehra">
+        <action
+            android:id="@+id/action_prehraFragment_to_uvodnaStranaFragment"
+            app:destination="@id/uvodnaStranaFragment"
+            app:popUpTo="@id/uvodnaStranaFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_prehraFragment_to_novaHraFragment"
+            app:destination="@id/novaHraFragment"
+            app:popUpTo="@id/uvodnaStranaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vyhraFragment"
+        android:name="fri.uniza.sk.mikulik6.koronaSlayer.VyhraFragment"
+        android:label="VyhraFragment"
+        tools:layout="@layout/fragment_vyhra">
+        <action
+            android:id="@+id/action_vyhraFragment_to_uvodnaStranaFragment"
+            app:destination="@id/uvodnaStranaFragment"
+            app:popUpTo="@id/uvodnaStranaFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_vyhraFragment_to_novaHraFragment"
+            app:destination="@id/novaHraFragment"
+            app:popUpTo="@id/uvodnaStranaFragment" />
     </fragment>
 </navigation>
