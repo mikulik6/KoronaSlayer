@@ -41,14 +41,14 @@
             android:id="@+id/vyhraKoronaObrazok"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
             android:padding="30dp"
             android:src="@drawable/korona_mrtva"
-            app:layout_constraintBottom_toTopOf="@+id/vyhraMenuTlacidlo"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/vyhraNovaHraTlacidlo"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vyhraPopisText"/>
+            app:layout_constraintTop_toBottomOf="@+id/vyhraPopisText" />
 
         <Button
             android:id="@+id/vyhraMenuTlacidlo"
@@ -58,18 +58,24 @@
             android:text="@string/prehraMenuText"
             app:layout_constraintBottom_toTopOf="@+id/vyhraNovaHraTlacidlo"
             app:layout_constraintEnd_toEndOf="@+id/vyhraNovaHraTlacidlo"
-            app:layout_constraintStart_toStartOf="@+id/vyhraNovaHraTlacidlo" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/vyhraNovaHraTlacidlo"
+            app:layout_constraintTop_toBottomOf="@id/vyhraPopisText"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <Button
             android:id="@+id/vyhraNovaHraTlacidlo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="@string/prehraNovaHraText"
+            android:layout_marginEnd="100dp"
+            android:layout_weight="1"
             android:backgroundTint="@color/orangeColor"
+            android:text="@string/prehraNovaHraText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/vyhraKoronaObrazok"
+            app:layout_constraintTop_toBottomOf="@+id/vyhraMenuTlacidlo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

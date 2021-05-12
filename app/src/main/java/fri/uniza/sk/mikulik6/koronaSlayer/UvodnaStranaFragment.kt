@@ -27,7 +27,7 @@ class UvodnaStranaFragment : Fragment() {
 
         //Nastavenie viditelnosti tlačidlo "Pokračovať v hre" podľa parametra z HraViewModel
         if(!viewModel.bolaVytvorenaHra) {
-            binding.pokracovatVHreTlacidlo.visibility = View.GONE
+            binding.pokracovatVHreTlacidlo.visibility = View.INVISIBLE
         } else {
             binding.pokracovatVHreTlacidlo.visibility = View.VISIBLE
         }

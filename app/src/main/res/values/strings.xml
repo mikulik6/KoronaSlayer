@@ -21,7 +21,7 @@
     <string name="ukoncenieKola">ukoncit\nkolo</string>
 
     <!--FRAGMENT VYBER KARTY-->
-    <string name="popisPorazenehoNepriatelaText">Gratulujeme porazil si chorobu</string>
+    <string name="popisPorazenehoNepriatelaText">Gratulujem porazil si chorobu</string>
     <string name="vyberKartyPopisText">Za odmenu si vyber jednu z nasledjúcich kariet</string>
     <string name="kartaNaVyberTlacidloText">%s: %s</string>
 
