@@ -91,10 +91,16 @@ abstract class Postava(val meno: String, val pasivnaSchopnost: String, pZdravie:
         _blok.value = 0
     }
 
-
     //Koniec boja
     fun zabilSiNepriatela() {
         _aktualnyLevel++
+        //nepriatel = null
+        _mana.value = 3
+        _blok.value = 0
+    }
+
+    //Koniec boja
+    fun odidZLevelu() {
         nepriatel = null
         _mana.value = 3
         _blok.value = 0
@@ -115,13 +121,13 @@ abstract class Postava(val meno: String, val pasivnaSchopnost: String, pZdravie:
 
         while (pocitadlo < 10) {
             if (pocitadlo < 3) {
-                this.balicekKariet.add(AntibakterialnaUtociacaKarta("PENICILIN", "Vhodny proti bakteriam", 1, 5))
+                this.balicekKariet.add(AntibakterialnaUtociacaKarta("PENICILIN", "5 utok", 1, 5))
             } else if (pocitadlo < 6) {
-                this.balicekKariet.add(AntivirusovaUtociacaKarta("IBALGIN", "Vhodny proti virusom", 1, 5));
+                this.balicekKariet.add(AntivirusovaUtociacaKarta("IBALGIN", "5 utok", 1, 5));
             } else if (pocitadlo < 8) {
-                this.balicekKariet.add(UzdravovaciaKarta("HORUCI CAJ", "Liek ako ziadny iny", 1, 10));
+                this.balicekKariet.add(UzdravovaciaKarta("HORUCI CAJ", "+10 zivotov", 1, 10));
             } else {
-                this.balicekKariet.add(BlokovaciaKarta("CIBULA", "Posilnenie na 1 kolo", 1, 4));
+                this.balicekKariet.add(BlokovaciaKarta("CIBULA", "+4 obrana", 1, 4));
             }
             pocitadlo++
         }

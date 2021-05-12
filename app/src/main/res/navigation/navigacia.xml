@@ -27,7 +27,9 @@
             app:destination="@id/bojFragment" />
         <action
             android:id="@+id/action_mapaHryFragment_to_uvodnaStranaFragment"
-            app:destination="@id/uvodnaStranaFragment" />
+            app:destination="@id/uvodnaStranaFragment"
+            app:popUpTo="@id/uvodnaStranaFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/novaHraFragment"
@@ -40,7 +42,9 @@
             app:popUpTo="@id/uvodnaStranaFragment" />
         <action
             android:id="@+id/action_novaHraFragment_to_uvodnaStranaFragment"
-            app:destination="@id/uvodnaStranaFragment" />
+            app:destination="@id/uvodnaStranaFragment"
+            app:popUpTo="@id/uvodnaStranaFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/bojFragment"
@@ -51,5 +55,20 @@
             android:id="@+id/action_bojFragment_to_mapaHryFragment"
             app:destination="@id/mapaHryFragment"
             app:popUpTo="@id/uvodnaStranaFragment" />
+        <action
+            android:id="@+id/action_bojFragment_to_vyberKartyFragment"
+            app:destination="@id/vyberKartyFragment"
+            app:popUpTo="@id/mapaHryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vyberKartyFragment"
+        android:name="fri.uniza.sk.mikulik6.koronaSlayer.VyberKartyFragment"
+        android:label="VyberKartyFragment"
+        tools:layout="@layout/fragment_vyber_karty">
+        <action
+            android:id="@+id/action_vyberKartyFragment_to_mapaHryFragment"
+            app:destination="@id/mapaHryFragment"
+            app:popUpTo="@id/mapaHryFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

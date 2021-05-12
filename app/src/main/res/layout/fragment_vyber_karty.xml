@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="hraViewModel"
+            type="fri.uniza.sk.mikulik6.koronaSlayer.HraViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/vyberKartyConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".VyberKartyFragment">
+
+        <TextView
+            android:id="@+id/popisPorazenehoNepriatelaText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/popisPorazenehoNepriatelaText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Porazil si " />
+
+        <TextView
+            android:id="@+id/nazovPorazenehoNepriatelaText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text=""
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/popisPorazenehoNepriatelaText"
+            tools:text="NazovPorazenehoNepriatela" />
+
+        <TextView
+            android:id="@+id/vyberKartyPopisText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/vyberKartyPopisText"
+            app:layout_constraintBottom_toTopOf="@+id/kartaNaVyber2Tlacidlo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nazovPorazenehoNepriatelaText"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Vyber si kartu" />
+
+        <Button
+            android:id="@+id/kartaNaVyber1Tlacidlo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:textAllCaps="false"
+            android:text="@{@string/kartaNaVyberTlacidloText(hraViewModel.riadicKariet.kartyNaVyber[0].nazov, hraViewModel.riadicKariet.kartyNaVyber[0].popis)}"
+            app:layout_constraintBottom_toTopOf="@+id/kartaNaVyber3Tlacidlo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kartaNaVyber2Tlacidlo"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="karta na vyber 2" />
+
+        <Button
+            android:id="@+id/kartaNaVyber2Tlacidlo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:textAllCaps="false"
+            android:text="@{@string/kartaNaVyberTlacidloText(hraViewModel.riadicKariet.kartyNaVyber[1].nazov, hraViewModel.riadicKariet.kartyNaVyber[1].popis)}"
+            app:layout_constraintBottom_toTopOf="@+id/kartaNaVyber1Tlacidlo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vyberKartyPopisText"
+            tools:text="Karta na vyber 1" />
+
+        <Button
+            android:id="@+id/kartaNaVyber3Tlacidlo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textAllCaps="false"
+            android:text="@{@string/kartaNaVyberTlacidloText(hraViewModel.riadicKariet.kartyNaVyber[2].nazov, hraViewModel.riadicKariet.kartyNaVyber[2].popis)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kartaNaVyber1Tlacidlo"
+            tools:text="karta na vyber 3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

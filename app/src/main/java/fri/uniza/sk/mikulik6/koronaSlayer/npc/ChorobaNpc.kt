@@ -23,8 +23,13 @@ abstract class ChorobaNpc(val meno: String, protected val utok: Int, pZivoty: In
     fun prijmiUtok(damage: Int, hrac: Postava) {
         _zivoty.value = _zivoty.value?.minus(damage)
         if (_zivoty.value!! <= 0) {
+            _zivoty.value = 0
             throw MrtveNpcException()
         }
+    }
+
+    fun resetujSa() {
+        _zivoty.value = maxZivoty
     }
 
 

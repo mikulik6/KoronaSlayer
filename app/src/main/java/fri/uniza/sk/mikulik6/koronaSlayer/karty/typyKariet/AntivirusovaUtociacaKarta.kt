@@ -18,4 +18,8 @@ class AntivirusovaUtociacaKarta(nazov: String, popis: String, cena: Int, utok: I
 
         choroba?.prijmiUtok(hodnotaAkcie, hrac)
     }
+
+    override fun naklonujSa(): AntivirusovaUtociacaKarta {
+        return AntivirusovaUtociacaKarta(nazov, popis, cena, hodnotaAkcie)
+    }
 }

@@ -65,7 +65,7 @@ class MapaHryFragment : Fragment() {
 
     private fun hracDoDalsejMiestnosti(cisloLevelu: Int) {
         if (cisloLevelu == viewModel.hrac.aktualnyLevel) {
-            viewModel.hrac.chodDoDalsejMiestnosti(viewModel.mapa)
+            viewModel.novyLevel()
             findNavController().navigate(R.id.action_mapaHryFragment_to_bojFragment)
         } else {
             Toast.makeText(activity, "Toto je nespravny level!", Toast.LENGTH_SHORT).show()

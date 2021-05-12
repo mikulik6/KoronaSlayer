@@ -16,4 +16,8 @@ class AntibakterialnaUtociacaKarta(nazov: String, popis: String, cena: Int, utok
 
         choroba?.prijmiUtok(hodnotaAkcie, hrac)
     }
+
+    override fun naklonujSa(): AntibakterialnaUtociacaKarta {
+        return AntibakterialnaUtociacaKarta(nazov, popis, cena, hodnotaAkcie)
+    }
 }

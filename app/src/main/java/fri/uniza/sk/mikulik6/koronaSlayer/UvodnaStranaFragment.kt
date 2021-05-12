@@ -25,13 +25,12 @@ class UvodnaStranaFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_uvodna_strana, container,false)
 
+        //Nastavenie viditelnosti tlačidlo "Pokračovať v hre" podľa parametra z HraViewModel
         if(!viewModel.bolaVytvorenaHra) {
             binding.pokracovatVHreTlacidlo.visibility = View.GONE
         } else {
             binding.pokracovatVHreTlacidlo.visibility = View.VISIBLE
         }
-
-
 
         //Nastavenie onClickListenerov
         binding.pokracovatVHreTlacidlo.setOnClickListener { findNavController().navigate(R.id.action_uvodnaStranaFragment_to_mapaHryFragment) }
@@ -47,11 +46,9 @@ class UvodnaStranaFragment : Fragment() {
             MaterialAlertDialogBuilder(requireContext())
                     .setTitle("Hra už existuje!")
                     .setMessage("Chceš vytvoriť novú hru?")
-                    .setNegativeButton("Nie") {dialog, which ->
-
-                    }
+                    .setNegativeButton("Nie") {dialog, which -> }
                     .setPositiveButton("OK") { dialog, which ->
-                        viewModel.bolaVytvorenaHra = false
+                        viewModel.restartujHru()
                         findNavController().navigate(R.id.action_uvodnaStranaFragment_to_novaHraFragment)
                     }
                     .show()

@@ -1,21 +1,31 @@
 package fri.uniza.sk.mikulik6.koronaSlayer.karty.riadenie
 
 import androidx.lifecycle.LiveData
-import fri.uniza.sk.mikulik6.koronaSlayer.karty.typyKariet.Karta
+import fri.uniza.sk.mikulik6.koronaSlayer.karty.typyKariet.*
 import fri.uniza.sk.mikulik6.koronaSlayer.postavy.Postava
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.KoniecHracovhoTahuException
 import kotlin.random.Random
 
 class RiadicKariet {
 
+    private val vzoryKariet = arrayOf(
+            AntibakterialnaUtociacaKarta("PENICILIN", "5 utok", 1, 5),
+            AntivirusovaUtociacaKarta("IBALGIN", "5 utok", 1, 5),
+            UzdravovaciaKarta("HORUCI CAJ", "+10 zivotov", 1, 10),
+            UzdravovaciaKarta("NOSNE KVAPKY", "+8 zivotov", 1, 8),
+            UzdravovaciaKarta("JABLKO", "+15 zivotov", 1, 15),
+            UzdravovaciaKarta("CITRON", "+20 zivotov", 1, 20),
+            BlokovaciaKarta("CIBULA", "+4 obrana", 1, 4),
+            BlokovaciaKarta("CESNAK", "+5 obrana", 1, 5))
+
     private var tahaciBalicek = mutableListOf<Karta>()
     private var zahadzovaciBalicek = mutableListOf<Karta>()
     private var _hratelneKarty = mutableListOf<Karta>()
-    private var _hratelneKartyLive = mutableListOf<LiveData<Karta>>()
-        val hratelneKarty get() = _hratelneKartyLive
-    //val hratelneKarty: mutableListOf<LiveData<Karta>()
-
-
+    val hratelneKarty
+        get() = _hratelneKarty
+    private var _kartyNaVyber = mutableListOf<Karta>()
+    val kartyNaVyber
+        get() = _kartyNaVyber
 
 
 
@@ -51,7 +61,11 @@ class RiadicKariet {
         tahaciBalicek.clear()
         _hratelneKarty.clear()
         zahadzovaciBalicek.clear()
-        //vytvorenie kariet pre vyber
+        vytvorKartyNaVyber()
+    }
+
+    fun zahodKartyNaVyber() {
+        _kartyNaVyber.clear()
     }
 
 
@@ -79,7 +93,11 @@ class RiadicKariet {
             }
             i++
         }
+    }
 
-        _hratelneKartyLive.addAll(hratelneKarty)
+    private fun vytvorKartyNaVyber() {
+        for (i in 1..3) {
+            _kartyNaVyber.add(vzoryKariet.get(Random.nextInt(vzoryKariet.size - 1)).naklonujSa())
+        }
     }
 }

@@ -8,4 +8,8 @@ class UzdravovaciaKarta(nazov: String, popis: String, cena: Int, uzdravenie: Int
     override fun pouziKartu(hrac: Postava) {
         hrac.uzdravSa(super.hodnotaAkcie)
     }
+
+    override fun naklonujSa(): UzdravovaciaKarta {
+        return UzdravovaciaKarta(nazov, popis, cena, hodnotaAkcie)
+    }
 }

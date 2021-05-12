@@ -8,4 +8,8 @@ class BlokovaciaKarta(nazov: String, popis: String, cena: Int, blok: Int)
     override fun pouziKartu(hrac: Postava) {
         hrac.pridajBlok(hodnotaAkcie)
     }
+
+    override fun naklonujSa(): BlokovaciaKarta {
+        return BlokovaciaKarta(nazov, popis, cena, hodnotaAkcie)
+    }
 }
