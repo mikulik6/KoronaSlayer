@@ -60,6 +60,16 @@ class MapaHryFragment : Fragment() {
 
         binding.topAppBar.setNavigationOnClickListener { findNavController().navigate(R.id.action_mapaHryFragment_to_uvodnaStranaFragment) }
 
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.postavaInfoItem -> {
+                    findNavController().navigate(R.id.action_mapaHryFragment_to_postavaInfoFragment)
+                    true
+                }
+                else -> false
+            }
+        }
+
         return binding.root
     }
 

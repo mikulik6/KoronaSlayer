@@ -30,6 +30,9 @@
             app:destination="@id/uvodnaStranaFragment"
             app:popUpTo="@id/uvodnaStranaFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mapaHryFragment_to_postavaInfoFragment"
+            app:destination="@id/postavaInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/novaHraFragment"
@@ -110,4 +113,9 @@
             app:destination="@id/novaHraFragment"
             app:popUpTo="@id/uvodnaStranaFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/postavaInfoFragment"
+        android:name="fri.uniza.sk.mikulik6.koronaSlayer.PostavaInfoFragment"
+        android:label="PostavaInfoFragment"
+        tools:layout="@layout/fragment_postava_info"/>
 </navigation>

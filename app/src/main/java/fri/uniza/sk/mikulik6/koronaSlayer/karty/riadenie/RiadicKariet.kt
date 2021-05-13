@@ -27,7 +27,7 @@ class RiadicKariet {
     val kartyNaVyber
         get() = _kartyNaVyber
 
-
+    val pouziteKarty = mutableListOf<Int>()
 
 
 
@@ -41,11 +41,15 @@ class RiadicKariet {
     fun noveKolo() {
         zahodHratelneKarty()
         vytiahniHratelneKarty()
+        pouziteKarty.clear()
     }
 
     //Počas levelu
     fun zahrajKartu(cisloKarty: Int, hrac: Postava) {
         val vybrataKarta = _hratelneKarty.get(cisloKarty)
+
+        //PRIDANE
+        pouziteKarty.add(cisloKarty)
 
         zahadzovaciBalicek.add(vybrataKarta)
         vybrataKarta.pouziKartu(hrac)

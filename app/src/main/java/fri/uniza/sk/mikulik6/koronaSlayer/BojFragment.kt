@@ -1,6 +1,7 @@
 package fri.uniza.sk.mikulik6.koronaSlayer
 
 import android.animation.ObjectAnimator
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
@@ -77,8 +79,37 @@ class BojFragment : Fragment(){
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
-        //Vykonanie akcie na zaciatku kola
-        zaciatokKola()
+        if (savedInstanceState==null){
+            //Vykonanie akcie na zaciatku kola
+            zaciatokKola()
+        } else {
+            nastavenieTextovKariet()
+
+            var pocitadlo = 0
+            while (pocitadlo < viewModel.riadicKariet.pouziteKarty.size){
+                val cisloPouzitejKarty = viewModel.riadicKariet.pouziteKarty[pocitadlo]
+
+                if (cisloPouzitejKarty == 0){
+                    binding.karta1Tlacidlo.visibility = View.INVISIBLE
+                }
+                if (cisloPouzitejKarty == 1){
+                    binding.karta2Tlacidlo.visibility = View.INVISIBLE
+                }
+                if (cisloPouzitejKarty == 2){
+                    binding.karta3Tlacidlo.visibility = View.INVISIBLE
+                }
+                if (cisloPouzitejKarty == 3){
+                    binding.karta4Tlacidlo.visibility = View.INVISIBLE
+                }
+                if (cisloPouzitejKarty == 4){
+                    binding.karta5Tlacidlo.visibility = View.INVISIBLE
+                }
+
+                pocitadlo++
+            }
+        }
+
+
 
         return binding.root
     }
@@ -86,17 +117,21 @@ class BojFragment : Fragment(){
     private fun zaciatokKola() {
         viewModel.noveKolo()
 
-        binding.karta1Tlacidlo.text = getString(R.string.kartaTlacidlo, viewModel.riadicKariet.hratelneKarty[0].nazov, viewModel.riadicKariet.hratelneKarty[0].popis)
-        binding.karta2Tlacidlo.text = getString(R.string.kartaTlacidlo, viewModel.riadicKariet.hratelneKarty[1].nazov, viewModel.riadicKariet.hratelneKarty[1].popis)
-        binding.karta3Tlacidlo.text = getString(R.string.kartaTlacidlo, viewModel.riadicKariet.hratelneKarty[2].nazov, viewModel.riadicKariet.hratelneKarty[2].popis)
-        binding.karta4Tlacidlo.text = getString(R.string.kartaTlacidlo, viewModel.riadicKariet.hratelneKarty[3].nazov, viewModel.riadicKariet.hratelneKarty[3].popis)
-        binding.karta5Tlacidlo.text = getString(R.string.kartaTlacidlo, viewModel.riadicKariet.hratelneKarty[4].nazov, viewModel.riadicKariet.hratelneKarty[4].popis)
+        nastavenieTextovKariet()
 
         binding.karta1Tlacidlo.visibility = View.VISIBLE
         binding.karta2Tlacidlo.visibility = View.VISIBLE
         binding.karta3Tlacidlo.visibility = View.VISIBLE
         binding.karta4Tlacidlo.visibility = View.VISIBLE
         binding.karta5Tlacidlo.visibility = View.VISIBLE
+    }
+
+    private fun nastavenieTextovKariet(){
+        binding.karta1Tlacidlo.text = getString(R.string.kartaTlacidlo, viewModel.riadicKariet.hratelneKarty[0].nazov, viewModel.riadicKariet.hratelneKarty[0].popis)
+        binding.karta2Tlacidlo.text = getString(R.string.kartaTlacidlo, viewModel.riadicKariet.hratelneKarty[1].nazov, viewModel.riadicKariet.hratelneKarty[1].popis)
+        binding.karta3Tlacidlo.text = getString(R.string.kartaTlacidlo, viewModel.riadicKariet.hratelneKarty[2].nazov, viewModel.riadicKariet.hratelneKarty[2].popis)
+        binding.karta4Tlacidlo.text = getString(R.string.kartaTlacidlo, viewModel.riadicKariet.hratelneKarty[3].nazov, viewModel.riadicKariet.hratelneKarty[3].popis)
+        binding.karta5Tlacidlo.text = getString(R.string.kartaTlacidlo, viewModel.riadicKariet.hratelneKarty[4].nazov, viewModel.riadicKariet.hratelneKarty[4].popis)
     }
 
     private fun kliknutieTlacidlaKarty(cisloKarty: Int) {

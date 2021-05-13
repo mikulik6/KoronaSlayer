@@ -34,4 +34,13 @@
     <string name="vyhraGratulaciaText">Gratulujem</string>
     <string name="vyhraPopisText">podarilo sa ti poraziť KORONU</string>
 
+    <!--FRAGMENT POSTAVA INFO-->
+    <string name="postavaInfoZivoty">Životy:\n%s/%s</string>
+    <string name="postavaInfoMaxMana">Max. mana:\n%s</string>
+    <string name="postavaInfoPasivnaSchopnost">Pasívna schopnosť:\n%s</string>
+    <string name="postavaInfoZoznamKariet">zoznam kariet</string>
+
+    <!--ITEM ZOZNAM KARIET-->
+    <string name="zoznamKarietItemPocet">%dx</string>
+
 </resources>
