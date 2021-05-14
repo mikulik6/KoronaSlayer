@@ -5,17 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentMapaHryBinding
 import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentUvodnaStranaBinding
-import fri.uniza.sk.mikulik6.koronaSlayer.postavy.Sestricka
 
 class UvodnaStranaFragment : Fragment() {
 
@@ -25,7 +19,7 @@ class UvodnaStranaFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_uvodna_strana, container,false)
 
-        //Nastavenie viditelnosti tlačidlo "Pokračovať v hre" podľa parametra z HraViewModel
+        //Nastavenie viditelnosti tlačidlo "Pokračovať v hre" podľa parametru z HraViewModel
         if(!viewModel.bolaVytvorenaHra) {
             binding.pokracovatVHreTlacidlo.visibility = View.INVISIBLE
         } else {
@@ -47,7 +41,7 @@ class UvodnaStranaFragment : Fragment() {
                     .setTitle("Hra už existuje!")
                     .setMessage("Chceš vytvoriť novú hru?")
                     .setNegativeButton("Nie") {dialog, which -> }
-                    .setPositiveButton("OK") { dialog, which ->
+                    .setPositiveButton("Áno") {dialog, which ->
                         viewModel.restartujHru()
                         findNavController().navigate(R.id.action_uvodnaStranaFragment_to_novaHraFragment)
                     }

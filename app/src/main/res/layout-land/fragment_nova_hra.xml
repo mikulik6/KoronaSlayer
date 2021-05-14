@@ -16,9 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/novaHraConstraint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".NovaHraFragment">
-
+        android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/novaHraAppBarLayout"
@@ -36,6 +34,8 @@
                 app:titleCentered="true" />
 
         </com.google.android.material.appbar.AppBarLayout>
+
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/postava1Constraint"
@@ -98,27 +98,24 @@
                 app:layout_constraintEnd_toStartOf="@+id/postava1Obrazok"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/postava1Nazov">
-
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/postava1Zivoty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{@string/maxZivoty(postava1.maxZdravie)}"
                     android:textColor="@color/greyColor"
                     tools:text="životy" />
-
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/postava1Mana"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{@string/maxMana(postava1.mana)}"
                     android:textColor="@color/greyColor"
                     tools:text="mana" />
-
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/postava1PasivnaSchopnost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -189,27 +186,24 @@
                 app:layout_constraintEnd_toStartOf="@+id/postava2Obrazok"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/postava2Nazov">
-
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/postava2Zivoty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{@string/maxZivoty(postava2.maxZdravie)}"
                     android:textColor="@color/greyColor"
                     tools:text="životy" />
-
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/postava2Mana"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{@string/maxMana(postava2.mana)}"
                     android:textColor="@color/greyColor"
                     tools:text="mana" />
-
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/postava2PasivnaSchopnost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

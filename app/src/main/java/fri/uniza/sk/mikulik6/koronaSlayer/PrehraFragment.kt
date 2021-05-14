@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentBojBinding
 import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentPrehraBinding
 import fri.uniza.sk.mikulik6.koronaSlayer.postavy.Lekar
 
@@ -20,17 +19,15 @@ class PrehraFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_prehra, container,false)
 
+        binding.prehraNazovNepriatelaText.text = viewModel.hrac.nepriatel?.meno
+
+        binding.prehraPopisText.text = getString(R.string.prehraPopisText, if(viewModel.hrac.nepriatel?.muzskyRod == true) "premhol" else "premohla")
+
         if (viewModel.hrac is Lekar) {
             binding.prehraHracObrazok.setImageResource(R.drawable.doktor_mrtvy)
         } else {
            binding.prehraHracObrazok.setImageResource(R.drawable.sestricka_mrtva)
         }
-
-        binding.prehraNazovNepriatelaText.text = viewModel.hrac.nepriatel?.meno
-
-        binding.prehraPopisText.text = getString(R.string.prehraPopisText, if(viewModel.hrac.nepriatel?.muzskyRod == true) "premhol" else "premohla")
-
-        viewModel.restartujHru()
 
         binding.prehraMenuTlacidlo.setOnClickListener {
             findNavController().navigate(R.id.action_prehraFragment_to_uvodnaStranaFragment)
@@ -38,6 +35,8 @@ class PrehraFragment : Fragment() {
         binding.prehraNovaHraTlacidlo.setOnClickListener {
             findNavController().navigate(R.id.action_prehraFragment_to_novaHraFragment)
         }
+
+        viewModel.restartujHru()
 
         return binding.root
     }

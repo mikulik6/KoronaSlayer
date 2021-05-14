@@ -13,8 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bojConstraint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".BojFragment">
+        android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -27,6 +26,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <ImageView
+                    android:id="@+id/manaHracaObrazok"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/mana"
+                    app:tint="@color/lightBlueColor" />
+                <TextView
+                    android:id="@+id/manaHraca"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@{@string/manaHraca(hraViewModel.hrac.mana)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/manaHracaObrazok"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Mana"
+                    />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -36,15 +57,12 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
-
                     <ImageView
-                        android:id="@+id/imageView4"
+                        android:id="@+id/zivotyHracaObrazok"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:layout_weight="1"
                         app:srcCompat="@drawable/zivot"
                         app:tint="@color/lightRedColor" />
-
                     <TextView
                         android:id="@+id/zivotyHraca"
                         android:layout_width="wrap_content"
@@ -56,41 +74,7 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/mana"
-                    app:tint="@color/lightBlueColor" />
-
-                <TextView
-                    android:id="@+id/blokHraca"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:text="@{@string/blokHraca(hraViewModel.hrac.blok)}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imageView2"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Blok" />
-
-                <TextView
-                    android:id="@+id/manaHraca"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="@{@string/manaHraca(hraViewModel.hrac.mana)}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView3"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Mana"
-                    />
-
-                <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/blokHracaObrazok"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginEnd="10dp"
@@ -99,6 +83,16 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/blok"
                     app:tint="@color/yellowColor"/>
+                <TextView
+                    android:id="@+id/blokHraca"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@{@string/blokHraca(hraViewModel.hrac.blok)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/blokHracaObrazok"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Blok" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.AppBarLayout>
@@ -126,13 +120,13 @@
             android:layout_height="0dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
+            android:maxWidth="200dp"
+            android:maxHeight="200dp"
             app:layout_constraintBottom_toTopOf="@+id/zivotyNepriatela"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/menoNepriatela"
-            android:maxHeight="200dp"
-            android:maxWidth="200dp"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -140,100 +134,106 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
-            android:textSize="20sp"
-            android:textColor="@color/lightRedColor"
-            android:textStyle="bold"
             android:text="@{@string/zivotyNepriatela(hraViewModel.hrac.nepriatel.zivoty, hraViewModel.hrac.nepriatel.maxZivoty)}"
-            app:layout_constraintBottom_toTopOf="@+id/karta1Tlacidlo"
+            android:textColor="@color/lightRedColor"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/bojTlacidlaConstraint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nepriatelObrazok"
             tools:text="Zivoty Nepraitela" />
 
-        <!--android:text="@{hraViewModel.riadicKariet.hratelneKarty[0].nazov}"
-        android:drawableLeft="@drawable/ic_baseline_info_24"-->
-
-        <Button
-            android:id="@+id/karta1Tlacidlo"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bojTlacidlaConstraint"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="10dp"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toTopOf="@+id/karta3Tlacidlo"
-            app:layout_constraintEnd_toStartOf="@+id/karta2Tlacidlo"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="1 Karta" />
-
-        <Button
-            android:id="@+id/karta2Tlacidlo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="10dp"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="@+id/karta1Tlacidlo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/karta1Tlacidlo"
-            tools:text="2 karta" />
-
-        <Button
-            android:id="@+id/karta3Tlacidlo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="10dp"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toTopOf="@+id/karta5Tlacidlo"
-            app:layout_constraintEnd_toStartOf="@+id/karta4Tlacidlo"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="3 karta" />
-
-        <Button
-            android:id="@+id/karta4Tlacidlo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="10dp"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="@+id/karta3Tlacidlo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/karta3Tlacidlo"
-            tools:text="4 karta" />
-
-        <Button
-            android:id="@+id/karta5Tlacidlo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="20dp"
-            android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/ukoncenieKolaTlacidlo"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="5 karta" />
+            app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/ukoncenieKolaTlacidlo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="@color/orangeColor"
-            android:text="@string/ukoncenieKola"
-            app:layout_constraintBottom_toBottomOf="@+id/karta5Tlacidlo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/karta5Tlacidlo"
-            tools:text="ukonecnie kola" />
+            <Button
+                android:id="@+id/karta1Tlacidlo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toTopOf="@+id/karta3Tlacidlo"
+                app:layout_constraintEnd_toStartOf="@+id/karta2Tlacidlo"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="1 Karta" />
+
+            <Button
+                android:id="@+id/karta2Tlacidlo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="@+id/karta1Tlacidlo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/karta1Tlacidlo"
+                tools:text="2 karta" />
+
+            <Button
+                android:id="@+id/karta3Tlacidlo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toTopOf="@+id/karta5Tlacidlo"
+                app:layout_constraintEnd_toStartOf="@+id/karta4Tlacidlo"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="3 karta" />
+
+            <Button
+                android:id="@+id/karta4Tlacidlo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="@+id/karta3Tlacidlo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/karta3Tlacidlo"
+                tools:text="4 karta" />
+
+            <Button
+                android:id="@+id/karta5Tlacidlo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="20dp"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ukoncenieKolaTlacidlo"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="5 karta" />
+
+            <Button
+                android:id="@+id/ukoncenieKolaTlacidlo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/orangeColor"
+                android:text="@string/ukoncenieKola"
+                app:layout_constraintBottom_toBottomOf="@+id/karta5Tlacidlo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/karta5Tlacidlo"
+                tools:text="ukonecnie kola" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

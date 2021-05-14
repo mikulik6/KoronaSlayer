@@ -117,5 +117,11 @@
         android:id="@+id/postavaInfoFragment"
         android:name="fri.uniza.sk.mikulik6.koronaSlayer.PostavaInfoFragment"
         android:label="PostavaInfoFragment"
-        tools:layout="@layout/fragment_postava_info"/>
+        tools:layout="@layout/fragment_postava_info">
+        <action
+            android:id="@+id/action_postavaInfoFragment_to_mapaHryFragment"
+            app:destination="@id/mapaHryFragment"
+            app:popUpTo="@id/mapaHryFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

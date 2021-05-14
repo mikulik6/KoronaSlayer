@@ -11,31 +11,34 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mapaHryHlavnyConstraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
+            android:id="@+id/mapaHryAppBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/topAppBar"
+                android:id="@+id/mapaHryAppBar"
                 android:layout_width="match_parent"
-                app:title="MAPA"
-                app:menu="@menu/mapa_hry_menu"
-                app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
                 android:layout_height="?attr/actionBarSize"
-                app:titleCentered="true"/>
+                app:title="MAPA"
+                app:titleCentered="true"
+                app:menu="@menu/mapa_hry_menu"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"/>
 
         </com.google.android.material.appbar.AppBarLayout>
+
+
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+            app:layout_constraintTop_toBottomOf="@id/mapaHryAppBarLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
@@ -52,7 +55,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:drawableTint="@color/greyColor"
-                    android:text="@{hraViewModel.mapa.levely[0].meno}"
+                    android:text="@{hraViewModel.mapa.choroba(0).meno}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -62,7 +65,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:drawableTint="@color/greyColor"
-                    android:text="@{hraViewModel.mapa.levely[1].meno}"
+                    android:text="@{hraViewModel.mapa.choroba(1).meno}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/level1Tlacidlo" />
@@ -72,7 +75,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:drawableTint="@color/greyColor"
-                    android:text="@{hraViewModel.mapa.levely[2].meno}"
+                    android:text="@{hraViewModel.mapa.choroba(2).meno}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/level2Tlacidlo" />
@@ -82,7 +85,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:drawableTint="@color/greyColor"
-                    android:text="@{hraViewModel.mapa.levely[3].meno}"
+                    android:text="@{hraViewModel.mapa.choroba(3).meno}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/level3Tlacidlo" />
@@ -92,7 +95,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:drawableTint="@color/greyColor"
-                    android:text="@{hraViewModel.mapa.levely[4].meno}"
+                    android:text="@{hraViewModel.mapa.choroba(4).meno}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/level4Tlacidlo" />
@@ -102,7 +105,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:drawableTint="@color/greyColor"
-                    android:text="@{hraViewModel.mapa.levely[5].meno}"
+                    android:text="@{hraViewModel.mapa.choroba(5).meno}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/level5Tlacidlo" />
@@ -112,7 +115,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:drawableTint="@color/greyColor"
-                    android:text="@{hraViewModel.mapa.levely[6].meno}"
+                    android:text="@{hraViewModel.mapa.choroba(6).meno}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/level6Tlacidlo" />
@@ -122,7 +125,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:drawableTint="@color/greyColor"
-                    android:text="@{hraViewModel.mapa.levely[7].meno}"
+                    android:text="@{hraViewModel.mapa.choroba(7).meno}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/level7Tlacidlo" />
@@ -132,7 +135,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:drawableTint="@color/greyColor"
-                    android:text="@{hraViewModel.mapa.levely[8].meno}"
+                    android:text="@{hraViewModel.mapa.choroba(8).meno}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/level8Tlacidlo" />
@@ -142,7 +145,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:drawableTint="@color/greyColor"
-                    android:text="@{hraViewModel.mapa.levely[9].meno}"
+                    android:text="@{hraViewModel.mapa.choroba(9).meno}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

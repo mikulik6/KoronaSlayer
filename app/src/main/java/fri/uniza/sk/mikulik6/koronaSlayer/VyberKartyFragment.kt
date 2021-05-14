@@ -10,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentBojBinding
 import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentVyberKartyBinding
 
 class VyberKartyFragment : Fragment() {

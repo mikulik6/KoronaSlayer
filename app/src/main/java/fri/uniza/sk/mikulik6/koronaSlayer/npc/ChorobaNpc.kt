@@ -14,13 +14,11 @@ abstract class ChorobaNpc(val meno: String, protected val utok: Int, pZivoty: In
 
 
 
-
-
     fun zautoc(hrac: Postava){
         hrac.prijmiUtok(utok)
     }
 
-    fun prijmiUtok(damage: Int, hrac: Postava) {
+    fun prijmiUtok(damage: Int) {
         _zivoty.value = _zivoty.value?.minus(damage)
         if (_zivoty.value!! <= 0) {
             _zivoty.value = 0
@@ -31,10 +29,6 @@ abstract class ChorobaNpc(val meno: String, protected val utok: Int, pZivoty: In
     fun resetujSa() {
         _zivoty.value = maxZivoty
     }
-
-
-
-
 
     abstract fun vykonajAkciu(hrac: Postava)
 }

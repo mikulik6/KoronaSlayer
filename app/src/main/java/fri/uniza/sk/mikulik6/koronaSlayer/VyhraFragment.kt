@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentPrehraBinding
 import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentVyhraBinding
 
 class VyhraFragment : Fragment() {
@@ -19,14 +18,14 @@ class VyhraFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_vyhra, container,false)
 
-        viewModel.restartujHru()
-
         binding.vyhraMenuTlacidlo.setOnClickListener {
             findNavController().navigate(R.id.action_vyhraFragment_to_uvodnaStranaFragment)
         }
         binding.vyhraNovaHraTlacidlo.setOnClickListener {
             findNavController().navigate(R.id.action_vyhraFragment_to_novaHraFragment)
         }
+
+        viewModel.restartujHru()
 
         return binding.root
     }

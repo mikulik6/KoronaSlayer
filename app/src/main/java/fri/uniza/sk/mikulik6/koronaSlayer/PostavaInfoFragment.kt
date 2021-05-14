@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import fri.uniza.sk.mikulik6.koronaSlayer.recyclerView.adapter.ZoznamKarietAdapter
 import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentPostavaInfoBinding
 import fri.uniza.sk.mikulik6.koronaSlayer.karty.typyKariet.AntibakterialnaUtociacaKarta
@@ -31,9 +32,10 @@ class PostavaInfoFragment : Fragment() {
             binding.postavaInfoPostavaObrazok.setImageResource(R.drawable.sestricka)
         }
 
+        binding.postavaInfoTopAppBar.setNavigationOnClickListener { findNavController().navigate(R.id.action_postavaInfoFragment_to_mapaHryFragment) }
+
         val zoznamKariet = nacitajZoznamKariet()
 
-        //DOPLNENE
         binding.postavaInfoZoznamKarietRecyclerView.adapter = ZoznamKarietAdapter(requireContext(), zoznamKariet)
         binding.postavaInfoZoznamKarietRecyclerView.setHasFixedSize(true)
 
@@ -42,8 +44,9 @@ class PostavaInfoFragment : Fragment() {
 
     private fun nacitajZoznamKariet() : List<KartaInfo> {
         val zoznamKariet = mutableListOf<KartaInfo>()
+        val hracovBalicekKariet = viewModel.hrac.getBalicekKariet()
 
-        for (karta in viewModel.hrac.balicekKariet) {
+        for (karta in hracovBalicekKariet) {
             val nazovKarty = karta.nazov
 
             var naslaSaKarta = false

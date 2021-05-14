@@ -1,6 +1,5 @@
 package fri.uniza.sk.mikulik6.koronaSlayer.karty.riadenie
 
-import androidx.lifecycle.LiveData
 import fri.uniza.sk.mikulik6.koronaSlayer.karty.typyKariet.*
 import fri.uniza.sk.mikulik6.koronaSlayer.postavy.Postava
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.KoniecHracovhoTahuException
@@ -9,31 +8,26 @@ import kotlin.random.Random
 class RiadicKariet {
 
     private val vzoryKariet = arrayOf(
-            AntibakterialnaUtociacaKarta("PENICILIN", "5 utok", 1, 5),
-            AntivirusovaUtociacaKarta("IBALGIN", "5 utok", 1, 5),
-            UzdravovaciaKarta("HORUCI CAJ", "+10 zivotov", 1, 10),
-            UzdravovaciaKarta("NOSNE KVAPKY", "+8 zivotov", 1, 8),
-            UzdravovaciaKarta("JABLKO", "+15 zivotov", 1, 15),
-            UzdravovaciaKarta("CITRON", "+20 zivotov", 1, 20),
-            BlokovaciaKarta("CIBULA", "+4 obrana", 1, 4),
-            BlokovaciaKarta("CESNAK", "+5 obrana", 1, 5))
+            AntibakterialnaUtociacaKarta("PENICILIN", "5 utok", 5),
+            AntivirusovaUtociacaKarta("IBALGIN", "5 utok", 5),
+            UzdravovaciaKarta("HORUCI CAJ", "+10 zivotov", 10),
+            UzdravovaciaKarta("NOSNE KVAPKY", "+8 zivotov", 8),
+            UzdravovaciaKarta("JABLKO", "+15 zivotov", 15),
+            UzdravovaciaKarta("CITRON", "+20 zivotov", 20),
+            BlokovaciaKarta("CIBULA", "+4 obrana", 4),
+            BlokovaciaKarta("CESNAK", "+5 obrana", 5))
 
-    private var tahaciBalicek = mutableListOf<Karta>()
-    private var zahadzovaciBalicek = mutableListOf<Karta>()
-    private var _hratelneKarty = mutableListOf<Karta>()
-    val hratelneKarty
-        get() = _hratelneKarty
-    private var _kartyNaVyber = mutableListOf<Karta>()
-    val kartyNaVyber
-        get() = _kartyNaVyber
+    private val tahaciBalicek = mutableListOf<Karta>()
+    private val zahadzovaciBalicek = mutableListOf<Karta>()
 
-    val pouziteKarty = mutableListOf<Int>()
+    private val hratelneKarty = mutableListOf<Karta>()
+    private val kartyNaVyber = mutableListOf<Karta>()
+    private val pouziteKarty = mutableListOf<Int>()
 
 
 
     //Začiatok levelu
-    fun vytvorTahaciBalicek(hracovBalicekKariet: MutableList<Karta>) {
-        //tahaciBalicek = hracovBalicekKariet
+    fun vytvorTahaciBalicek(hracovBalicekKariet: List<Karta>) {
         tahaciBalicek.addAll(hracovBalicekKariet)
     }
 
@@ -46,39 +40,50 @@ class RiadicKariet {
 
     //Počas levelu
     fun zahrajKartu(cisloKarty: Int, hrac: Postava) {
-        val vybrataKarta = _hratelneKarty.get(cisloKarty)
+        val vybrataKarta = hratelneKarty[cisloKarty]
 
-        //PRIDANE
         pouziteKarty.add(cisloKarty)
 
         zahadzovaciBalicek.add(vybrataKarta)
         vybrataKarta.pouziKartu(hrac)
-        hrac.uberManu(vybrataKarta.cena)
+        hrac.uberManu()
 
-        if (_hratelneKarty.isEmpty()) {
+        if (hratelneKarty.isEmpty())
             throw KoniecHracovhoTahuException()
-        }
+    }
+
+    fun vycistenieBalickov() {
+        tahaciBalicek.clear()
+        hratelneKarty.clear()
+        zahadzovaciBalicek.clear()
+        pouziteKarty.clear()
     }
 
     //Koniec levelu
     fun koniecLevelu() {
-        tahaciBalicek.clear()
-        _hratelneKarty.clear()
-        zahadzovaciBalicek.clear()
+        vycistenieBalickov()
         vytvorKartyNaVyber()
     }
 
     fun zahodKartyNaVyber() {
-        _kartyNaVyber.clear()
+        kartyNaVyber.clear()
     }
+
+
+
+
+    fun hratelnaKarta(cisloKarty: Int): Karta = hratelneKarty[cisloKarty]
+    fun kartaNaVyber(cisloKarty: Int): Karta = kartyNaVyber[cisloKarty]
+    fun pouzitaKarta(index: Int):Int = pouziteKarty[index]
+    fun pouziteKartySize() = pouziteKarty.size
 
 
 
 
 
     private fun zahodHratelneKarty() {
-        zahadzovaciBalicek.addAll(_hratelneKarty)
-        _hratelneKarty.clear()
+        zahadzovaciBalicek.addAll(hratelneKarty)
+        hratelneKarty.clear()
     }
 
     private fun vytiahniHratelneKarty() {
@@ -91,9 +96,9 @@ class RiadicKariet {
         var i = 0
         while (i < 5){
             if (maxIndexKarty - i > 0) {
-                _hratelneKarty.add(tahaciBalicek.removeAt(Random.nextInt(maxIndexKarty - i)))
+                hratelneKarty.add(tahaciBalicek.removeAt(Random.nextInt(maxIndexKarty - i)))
             } else {
-                _hratelneKarty.add(tahaciBalicek.removeAt(0))
+                hratelneKarty.add(tahaciBalicek.removeAt(0))
             }
             i++
         }
@@ -101,7 +106,7 @@ class RiadicKariet {
 
     private fun vytvorKartyNaVyber() {
         for (i in 1..3) {
-            _kartyNaVyber.add(vzoryKariet.get(Random.nextInt(vzoryKariet.size - 1)).naklonujSa())
+            kartyNaVyber.add(vzoryKariet[Random.nextInt(vzoryKariet.size)].naklonujSa())
         }
     }
 }

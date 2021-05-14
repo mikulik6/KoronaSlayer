@@ -4,7 +4,7 @@ import fri.uniza.sk.mikulik6.koronaSlayer.npc.BakterialnaChoroba
 import fri.uniza.sk.mikulik6.koronaSlayer.npc.VirusovaChoroba
 
 class Mapa {
-    val levely = arrayOf(
+    private val levely = arrayOf(
         BakterialnaChoroba("Kašeľ", 3, 16, true),
         VirusovaChoroba("Chrípka", 6,25, false),
         BakterialnaChoroba("Lepra", 10, 25, false),
@@ -16,6 +16,7 @@ class Mapa {
         VirusovaChoroba("Soplík", 25, 26, true),
         VirusovaChoroba("Korona", 15, 134, false)
     )
-    val pocetLevelov = levely.size
 
+    val pocetLevelov = levely.size
+    fun choroba(cisloLevelu: Int) = levely[cisloLevelu]
 }

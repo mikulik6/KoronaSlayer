@@ -16,6 +16,23 @@
         android:layout_height="match_parent"
         tools:context=".PostavaInfoFragment">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/postavaInfoAppBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/postavaInfoTopAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
+                app:title="POSTAVA INFO"
+                app:titleCentered="true" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
         <LinearLayout
             android:id="@+id/postaInfoLinear"
             android:layout_width="match_parent"
@@ -68,7 +85,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@{@string/postavaInfoMaxMana(hraViewModel.hrac.mana)}"
+                        android:text="@{@string/postavaInfoMaxMana(hraViewModel.hrac.maxMana)}"
                         tools:text="Max. Mana:\nx" />
 
                     <TextView
@@ -102,17 +119,6 @@
                 android:layout_height="0dp"
                 android:layout_weight="1.5">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/postavaInfoZoznamKarietRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:scrollbars="vertical"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/postavaInfoZoznamKarietNazovText" />
-
                 <TextView
                     android:id="@+id/postavaInfoZoznamKarietNazovText"
                     android:layout_width="wrap_content"
@@ -125,25 +131,20 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/postavaInfoZoznamKarietRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scrollbars="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/postavaInfoZoznamKarietNazovText" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/postavaInfoAppBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/postavaInfoTopAppBar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
-                app:title="POSTAVA INFO"
-                app:titleCentered="true" />
-
-        </com.google.android.material.appbar.AppBarLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

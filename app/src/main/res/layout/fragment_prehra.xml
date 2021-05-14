@@ -3,14 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/prehraConstraint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".PrehraFragment">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/prehraNazovNepriatelaText"
