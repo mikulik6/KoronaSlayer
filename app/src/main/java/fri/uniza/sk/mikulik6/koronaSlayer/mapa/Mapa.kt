@@ -3,6 +3,10 @@ package fri.uniza.sk.mikulik6.koronaSlayer.mapa
 import fri.uniza.sk.mikulik6.koronaSlayer.npc.BakterialnaChoroba
 import fri.uniza.sk.mikulik6.koronaSlayer.npc.VirusovaChoroba
 
+/**
+ * Trieda slúžiaca pre vytvorenie a ukladanie zoznamu NPC prislúchajúcich určitému levelu.
+ * Neskôr počas hry slúži pre získavanie inštancií NPC podľa levelu, v kotorom sa hráč aktuálne nachádza.
+ */
 class Mapa {
     private val levely = arrayOf(
         BakterialnaChoroba("Kašeľ", 3, 16, true),
@@ -17,6 +21,15 @@ class Mapa {
         VirusovaChoroba("Korona", 15, 134, false)
     )
 
+    /**
+     * Slúži na vrátenie počtu levelov mapy.
+     */
     val pocetLevelov = levely.size
+
+    /**
+     * Slúži na vrátenie inštancie choroby v levely zadanom ako parameter.
+     *
+     * @param cisloLevelu
+     */
     fun choroba(cisloLevelu: Int) = levely[cisloLevelu]
 }

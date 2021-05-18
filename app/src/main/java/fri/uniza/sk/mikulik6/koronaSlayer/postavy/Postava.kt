@@ -8,6 +8,15 @@ import fri.uniza.sk.mikulik6.koronaSlayer.npc.ChorobaNpc
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.KoniecHracovhoTahuException
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.SmrtHracaException
 
+/**
+ * Trieda ukladajúca základné informácie o postave hráča a definujúca základné správanie každého typu postavy.
+ *
+ * @property meno
+ * @property pasivnaSchopnost
+ * @constructor Nastaví hodnoty jednotlivých atribútov triedy a zavolá metódu slúžiacu na vytvorenie základného balíčka.
+ *
+ * @param pZdravie
+ */
 abstract class Postava(val meno: String, val pasivnaSchopnost: String, pZdravie: Int) {
 
     private val balicekKariet   = mutableListOf<Karta>()
@@ -35,21 +44,34 @@ abstract class Postava(val meno: String, val pasivnaSchopnost: String, pZdravie:
     }
 
 
-
-
-
+    /**
+     * Slúži na vrátenie kópie hráčovho balíčku kariet.
+     *
+     * @return
+     */
     fun getBalicekKariet(): List<Karta> {
         val podobnyBalicekKariet = mutableListOf<Karta>()
         podobnyBalicekKariet.addAll(balicekKariet)
         return podobnyBalicekKariet
     }
 
-    //Začiatok boja -> slúži na nastavenie nepriateľa (na základe mapy a čísla levelu)
+    /**
+     * Slúži na nastavenie hodnoty nepriateľa na zákalde hodnoty aktálneho levelu.
+     *
+     * @param mapa
+     */
     fun chodDoDalsejMiestnosti(mapa: Mapa) {
         _nepriatel = mapa.choroba(_aktualnyLevel - 1)
     }
 
-    //Počas boja -> Slúži na prijatie útoku (zníženie životov) od NPC o hodnotu útoku zadanú ako parameter.
+    /**
+     * Slúži na zníženie životov o hodnotu zadanú ako parameter avšak zníženú o hodnotu obrany/bloku postavy.
+     * V prípade že je po odčítaní bloku útok väčší ako 0 sú postave znížené životy o zostávajúcu hodnotu.
+     * Ak následne životy postavy klesnú pod 0 je vyhodená výnimka signalizujúca smrť postavy.
+     * Na konci prijatia útoku je blok nastavený na hodnotu 0 aj v prípade, že nebola hodnoty bloku celá využitá.
+     *
+     * @param pDamage
+     */
     fun prijmiUtok(pDamage: Int) {
         var damage: Int = pDamage
         damage -= _blok.value!!
@@ -66,7 +88,11 @@ abstract class Postava(val meno: String, val pasivnaSchopnost: String, pZdravie:
         _blok.value = 0
     }
 
-    //Počas Boja
+    /**
+     * Slúži na navýšenie životo postavy o hodnotu zadanú ako parameter nanajvýš však na hodotu maximálnych životov.
+     *
+     * @param uzdravenie
+     */
     fun uzdravSa(uzdravenie: Int) {
         _zdravie.value =  _zdravie.value!! + uzdravenie
 
@@ -74,12 +100,19 @@ abstract class Postava(val meno: String, val pasivnaSchopnost: String, pZdravie:
             _zdravie.value = maxZdravie
     }
 
-    //Počas Boja
+    /**
+     * Slúži na nyvýšenie hodnoty obrany/bloku postavy o hodnotu zadanú ako parameter
+     *
+     * @param blok
+     */
     fun pridajBlok(blok: Int) {
         _blok.value = _blok.value!! + blok
     }
 
-    //Počas boja
+    /**
+     * Slúži na znížeie hodnoty aktuálnej many postavy o 1.
+     * V prípade, že hodnota many je po znížený rovná 0 je vyhodená výnimka signalizujúca koniec kola hráča.
+     */
     fun uberManu() {
         _mana.value = (_mana.value)?.minus(1)
 
@@ -87,35 +120,47 @@ abstract class Postava(val meno: String, val pasivnaSchopnost: String, pZdravie:
             throw KoniecHracovhoTahuException()
     }
 
-    //Počas boja
+    /**
+     * Slúži na nastavenie hodnoty many a bolku postavy na začiatku kola.
+     * Hodnota many je nastavená na maximálnu hodnotu many.
+     * Hodnota bloku je nastavená na 0.
+     */
     open fun noveKolo() {
         _mana.value = maxMana
         _blok.value = 0
     }
 
-    //Koniec boja
+    /**
+     * Slúži na zvýšenie hodnoty aktuálneho levelu a zavolanie metódy nové kolo, ktorá slúži na nastavenie hodnôt many a bolku.
+     * Okrem iného slúži taktiež aj pre vynulovanie hodnoty nepriateľa.
+     */
     fun zabilSiNepriatela() {
         _aktualnyLevel++
         this.noveKolo()
         _nepriatel = null
     }
 
-    //Koniec boja
+    /**
+     * Slúži na zavolanie metódy nové kolo, ktorá slúži na nastavenie hodnoty many a bloku a na vynullovanie hodnoty nepriateľa.
+     */
     fun odidZLevelu() {
         this.noveKolo()
         _nepriatel = null
     }
 
-    //Koniec boja
+    /**
+     * Slúži na pridanie karty zadanej ako pramater do balíčku kariet.
+     *
+     * @param vybrataKarta
+     */
     fun pridajKartu(vybrataKarta: Karta) {
         balicekKariet.add(vybrataKarta)
     }
 
 
-
-
-
-    //Pri vytvorení postavy
+    /**
+     * Slúži na naplnenie balíčku kariet, základnými kartami.
+     */
     private fun vytvorZakladnyBalicek() {
         for (i in 0..9) {
             when {

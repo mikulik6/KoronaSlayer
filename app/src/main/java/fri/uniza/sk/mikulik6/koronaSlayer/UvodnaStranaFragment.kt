@@ -11,6 +11,10 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentUvodnaStranaBinding
 
+/**
+ * Fragment slúžiaci pre vytvorenie novej hry alebo pre pokračovanie v už vytvorenej hre.
+ * Fragment obsahuje 2 tlačidlá
+ */
 class UvodnaStranaFragment : Fragment() {
 
     private val viewModel: HraViewModel by activityViewModels()
@@ -33,6 +37,11 @@ class UvodnaStranaFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Metóda slúžiaca na zobrazenie dialógového okna v prípade, že hráč chce vytvoriť novú hru ale hra už existuje.
+     * Ak hráč zvolí že chce vytvoriť novú hru je pôvodná hra resetovaná a hráč je presmerovaný na fragment s výberom psotavy.
+     * V prípade, že hra vytvorená nebola a hráč klikne na tlačidlo nová hra je taktiež presmerovaný na fragment výberu psotavy.
+     */
     private fun novaHra() {
         if (!viewModel.bolaVytvorenaHra) {
             findNavController().navigate(R.id.action_uvodnaStranaFragment_to_novaHraFragment)

@@ -15,6 +15,12 @@ import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentBojBinding
 import fri.uniza.sk.mikulik6.koronaSlayer.npc.BakterialnaChoroba
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.*
 
+/**
+ * Fragment slúžiaci na reprezentáciu boja hráča s určitou chorobou (NPC).
+ * V sekcií AppBaru sú zobrazené infomácie o hodnote many, životov a bloku hráča.
+ * Nižšie je zobrazený názov, ilustračný obrázok a životy NPC.
+ * V úplne spodnej časti je 6 tlačidiel, kde 5 z nich reprezentuje náhodne vygenerované karty pre dané kolo a posledné je určenie pre predčasné ukončenie kola.
+ */
 class BojFragment : Fragment(){
 
     private val viewModel: HraViewModel by activityViewModels()
@@ -94,9 +100,10 @@ class BojFragment : Fragment(){
     }
 
 
-
-
-
+    /**
+     * Metóda slúžiaca na vykonanie akcií potrebných pre začatie kola.
+     * Okrem iného slúži taktiež na nastavenie textov jednotlivých tlačidiel a nastavenie ich viditeľnosti.
+     */
     private fun zaciatokKola() {
         viewModel.noveKolo()
         nastavenieTextovKariet()
@@ -104,6 +111,9 @@ class BojFragment : Fragment(){
             tlacidlo.visibility = View.VISIBLE
     }
 
+    /**
+     * Slúži na nastavenie textov jednotlivých tlačidiel reprezentujúcich karty.
+     */
     private fun nastavenieTextovKariet(){
         binding.karta1Tlacidlo.text = getString(R.string.kartaTlacidlo, viewModel.riadicKariet.hratelnaKarta(0).nazov, viewModel.riadicKariet.hratelnaKarta(0).popis)
         binding.karta2Tlacidlo.text = getString(R.string.kartaTlacidlo, viewModel.riadicKariet.hratelnaKarta(1).nazov, viewModel.riadicKariet.hratelnaKarta(1).popis)
@@ -112,6 +122,15 @@ class BojFragment : Fragment(){
         binding.karta5Tlacidlo.text = getString(R.string.kartaTlacidlo, viewModel.riadicKariet.hratelnaKarta(4).nazov, viewModel.riadicKariet.hratelnaKarta(4).popis)
     }
 
+    /**
+     * Metóda volaná pri kliknutí na tlačidlo karty, kde parameter reprezentuje číslo karty.
+     * V prvom rade je daná karta zahraná.
+     * Po prijatí výnimky KoniecHracovhoTahu je zavolaná metóda koniec hráčovho ťahu.
+     * Po prijatí výnimky DalsieLevel je hráč presmerovaný na fragment slúžiaci na výber novej karty.
+     * Po prijatí výnimky Vyhra je hráč premserovaný na fragment výhra.
+     *
+     * @param cisloKarty
+     */
     private fun zahranieKarty(cisloKarty: Int) {
         try {
             viewModel.zahranieKarty(cisloKarty)
@@ -124,6 +143,10 @@ class BojFragment : Fragment(){
         }
     }
 
+    /**
+     * Slúži na vykonianie akcie nepriateľa a zavolanie metódy začiatok kola.
+     * Po prijatí výnimky SmrtHraca je hráč premserovaný na fragment prehra.
+     */
     private fun koniecHracovhoTahu() {
         try {
             viewModel.nepriatelUtok()

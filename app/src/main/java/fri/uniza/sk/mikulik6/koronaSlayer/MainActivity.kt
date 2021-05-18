@@ -5,6 +5,12 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 
+/**
+ * Aktivita pokrývajúca všetky fragmenty aplikácie.
+ * Taktiež slúži pre základné nastavenia aplikácie ako je Full Screen mód aleboy schovanie Action Baru.
+ *
+ * @constructor Create empty Main activity
+ */
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

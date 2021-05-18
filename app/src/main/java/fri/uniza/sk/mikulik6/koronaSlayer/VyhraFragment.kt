@@ -10,6 +10,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentVyhraBinding
 
+/**
+ * Jednoduchý fragment informujúci o výhre hráča.
+ * Fragment obsahuje informatívny text o porazení Korony, ilustračný obrázok mrtveho NPC a 2 tlačidlá.
+ * Tlačidlá podbne ako v prehra fragment presmerujú hráča buď na úvodnú obrazovku alebo na fragment nová hra.
+ */
 class VyhraFragment : Fragment() {
 
     private val viewModel: HraViewModel by activityViewModels()

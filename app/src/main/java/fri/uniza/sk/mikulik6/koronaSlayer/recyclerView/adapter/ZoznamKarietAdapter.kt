@@ -11,6 +11,13 @@ import fri.uniza.sk.mikulik6.koronaSlayer.R
 import fri.uniza.sk.mikulik6.koronaSlayer.recyclerView.zoznamKarietData.KartaInfo
 import fri.uniza.sk.mikulik6.koronaSlayer.recyclerView.zoznamKarietData.TypKarty
 
+/**
+ * Adaptér využívaný pri zobrazovaní informácií o hráčovom balíčku kariet v recycleView na fragmente postava info.
+ *
+ * @property context
+ * @property zoznamKariet
+ * @constructor
+ */
 class ZoznamKarietAdapter(private val context: Context, private val zoznamKariet: List<KartaInfo>) : RecyclerView.Adapter<ZoznamKarietAdapter.ZoznamKarietViewHolder>() {
 
     class ZoznamKarietViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
@@ -25,6 +32,12 @@ class ZoznamKarietAdapter(private val context: Context, private val zoznamKariet
         return ZoznamKarietViewHolder(adapterLayout)
     }
 
+    /**
+     * Metóda slúžiaca na nastavenie farby a textov daného itemu.
+     *
+     * @param holder
+     * @param position
+     */
     override fun onBindViewHolder(holder: ZoznamKarietViewHolder, position: Int) {
         when(zoznamKariet[position].typ) {
             TypKarty.ANTIBAKTERIALNA -> holder.constraint.setBackgroundColor(context.resources.getColor(R.color.lightRedColor))
@@ -38,6 +51,11 @@ class ZoznamKarietAdapter(private val context: Context, private val zoznamKariet
         holder.pocetText.text = context.resources.getString(R.string.zoznamKarietItemPocet, zoznamKariet[position].pocet)
     }
 
+    /**
+     * Slúži na vrátenie počtu prvkov v zozname kariet.
+     *
+     * @return
+     */
     override fun getItemCount(): Int {
         return zoznamKariet.size
     }

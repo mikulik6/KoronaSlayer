@@ -14,6 +14,13 @@ import androidx.navigation.fragment.findNavController
 import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentMapaHryBinding
 import fri.uniza.sk.mikulik6.koronaSlayer.npc.BakterialnaChoroba
 
+/**
+ * Fragment slúžiaci hráčovi na vstup do určitého levelu.
+ * Fragment zobrazuje 10 tlačidiel s názvami chorôb(NPC) a obrázkami o type choroby nachádzajúcich sa v určitom levely.
+ * Tlačidlá sú okrem iného rozdielne farbou, kde zelená predstavuje level, ktorý hráča práve čaká.
+ * Červená predstavuje level, ktorý už hráč prešiel a na koniec biela farba predstavuje levely ktoré hráča čakajú v budúcnosti.
+ * AppBar umožnuje presmerovanie na úvodnú stranu alebo na fragment zobrazujúci informácie o postave.
+ */
 class MapaHryFragment : Fragment() {
 
     private val viewModel: HraViewModel by activityViewModels()
@@ -60,6 +67,12 @@ class MapaHryFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Metóda volaná po kliknutí na tlačidlo levelu, kde hodnota parametra predstavuje číslo levelu.
+     * V prípade že číslo levelu sa nezhoduje s číslom levelu hráča je hráč upozornený že klikol na level ktorý už prešiel alebo že ešte musí určitý level prejsť.
+     *
+     * @param cisloLevelu
+     */
     private fun hracDoDalsejMiestnosti(cisloLevelu: Int) {
         when {
             cisloLevelu < viewModel.hrac.aktualnyLevel -> Toast.makeText(activity, "Túto chorobu si už porazil!", Toast.LENGTH_SHORT).show()

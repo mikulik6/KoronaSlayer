@@ -11,6 +11,11 @@ import androidx.navigation.fragment.findNavController
 import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentPrehraBinding
 import fri.uniza.sk.mikulik6.koronaSlayer.postavy.Lekar
 
+/**
+ * Jednoduchý fragment informujúci o prehre hráča.
+ * Fragment obsahuje informatívny text s názvom NPC, ktoré hráča porazilo, ilustračný obrázok mrtvej postavy a 2 tlačidlá.
+ * Kde jedno tlačidlo presmeruje hráča na úvodnú obrazovku a jedno no fragment nová hra.
+ */
 class PrehraFragment : Fragment() {
 
     private val viewModel: HraViewModel by activityViewModels()
@@ -21,7 +26,7 @@ class PrehraFragment : Fragment() {
 
         binding.prehraNazovNepriatelaText.text = viewModel.hrac.nepriatel?.meno
 
-        binding.prehraPopisText.text = getString(R.string.prehraPopisText, if(viewModel.hrac.nepriatel?.muzskyRod == true) "premhol" else "premohla")
+        binding.prehraPopisText.text = getString(R.string.prehraPopisText, if(viewModel.hrac.nepriatel?.muzskyRod == true) "premohol" else "premohla")
 
         if (viewModel.hrac is Lekar) {
             binding.prehraHracObrazok.setImageResource(R.drawable.doktor_mrtvy)

@@ -17,6 +17,11 @@ import fri.uniza.sk.mikulik6.koronaSlayer.postavy.Lekar
 import fri.uniza.sk.mikulik6.koronaSlayer.recyclerView.zoznamKarietData.KartaInfo
 import fri.uniza.sk.mikulik6.koronaSlayer.recyclerView.zoznamKarietData.TypKarty
 
+/**
+ * Fragment zobrazujúci základné informácie o postave a balíčku kariet hráča.
+ * V hornej časti je zobrazený názov, životy, max. mana, pasívna schopnosť a ilustračný obrázok danej postavy.
+ * V spodnej časti je zobrazený zoznam kariet v hráčovom balíčku implementovaným pomocou recyclerView.
+ */
 class PostavaInfoFragment : Fragment() {
 
     private val viewModel: HraViewModel by activityViewModels()
@@ -42,6 +47,12 @@ class PostavaInfoFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Metóda slúžiaca na vytvorenie informačného zoznamu kariet.
+     * Kde prvky predstavujú určitú kartu a informáciu o jej počte v hráčovom balíčku.
+     *
+     * @return
+     */
     private fun nacitajZoznamKariet() : List<KartaInfo> {
         val zoznamKariet = mutableListOf<KartaInfo>()
         val hracovBalicekKariet = viewModel.hrac.getBalicekKariet()

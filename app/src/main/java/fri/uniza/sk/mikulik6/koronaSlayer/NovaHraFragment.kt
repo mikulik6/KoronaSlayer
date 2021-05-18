@@ -12,6 +12,13 @@ import fri.uniza.sk.mikulik6.koronaSlayer.databinding.FragmentNovaHraBinding
 import fri.uniza.sk.mikulik6.koronaSlayer.postavy.Lekar
 import fri.uniza.sk.mikulik6.koronaSlayer.postavy.Sestricka
 
+/**
+ * Fragment slúžiaci hráčovi pre výber postavy.
+ * Fragment obsahuje 2 klikacie Constraint Layouty na základe čoho je zvolená postava a hráč je presmerovaný na fragment mapa hry.
+ * Okrem iného obsahuje aj Appbar s možnosťou vrátenia sa na úvodnú obrazovku.
+ *
+ * @constructor Inicializuje viewModel a vytvára pole postáv.
+ */
 class NovaHraFragment : Fragment() {
 
     private val viewModel: HraViewModel by activityViewModels()

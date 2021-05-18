@@ -9,6 +9,13 @@ import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.DalsieLevelException
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.MrtveNpcException
 import fri.uniza.sk.mikulik6.koronaSlayer.vynimky.VyhraException
 
+/**
+ * ViewModel, ktorý je základom hry a slúži na uchovávanie stavov jednotlivých objektov potrebných počas hry.
+ * Uchováva informácie o riadiči kariet, ktorý slúži na riadenie práce s kartami.
+ * Taktiež uchováva informácie o mape, postave hráča a o tom či bola alebo nebola vytvorená hra.
+ *
+ * @constructor Vytvorí inštancie riadiča kariet, mapy, hráča a inicializuje hodnotu bolaVytvorenaHra na false.
+ */
 class HraViewModel : ViewModel() {
 
     val riadicKariet = RiadicKariet()
@@ -25,47 +32,58 @@ class HraViewModel : ViewModel() {
 
 
 
-    //vytvorenie novej inštancie mapy, nastavenie parametra bolaVytvorenaHra na false
-    //Po rozhodnutí sa vytvoriť novú hru pokiaľ už jedna existuje
-    //UvodnaStranaFragment
-    //PrehraFragment
-    //VyhraFragment
+    /**
+     * Slúži na nastavenie hodnoty atribútu bolaVytvorenaHra na false, vytvorenie novej mapy a prečistenie balíčkov kariet v riadiči.
+     */
     fun restartujHru() {
         _bolaVytvorenaHra = false
         _mapa = Mapa()
         riadicKariet.vycistenieBalickov()
     }
 
-    //nastavenie postavy na základe výberu tlačidla na fragmente "NovaHraFragment"
-    //NovaHraFragment
+    /**
+     * Slúži na nastavenie postavy hráča na postavu zadanú ako parameter a nastavenie hodnoty atribútu bolaVytvorenaHra na true.
+     *
+     * @param vybrataPostava
+     */
     fun nastavPostavu(vybrataPostava: Postava) {
         _hrac = vybrataPostava
         _bolaVytvorenaHra = true
     }
 
-    //nastavit nepriatela pre hraca, vytvorit tahaci balicek, akcie ako pri novom kole
-    //MapaHryFragment
+    /**
+     * Slúži na nastavenie hodnoty nepriateľa hráča a vytvorenie ťahacieho balíčka v riadiči kariet.
+     */
     fun novyLevel() {
         hrac.chodDoDalsejMiestnosti(mapa)
         riadicKariet.vytvorTahaciBalicek(hrac.getBalicekKariet())
     }
 
-    //Obnovenie zivotov choroby, upratanie kariet v riadici ako pri konci levelu, hrac nastavenie bloku/many
-    //BojFragment
+    /**
+     * Slúži na vyčistenie balíčkov riadiča kariet, obnovenie životov NPC v danom levely a resetovanie hodnôt hráča.
+     */
     fun resetujLevel() {
         riadicKariet.vycistenieBalickov()
         hrac.nepriatel?.resetujSa()
         hrac.odidZLevelu()
     }
 
-    //zavolanie metod noveKolo pre hráča a riadič kariet
-    //BojFragment
+    /**
+     * Slúži na zavolanie metódy riadiča kariet a hráča noveKolo, ktoré slúžia na vytvorenie hratelných kariet a nastavenie hodnôt many a bloku hráča na začiatku kola.
+     */
     fun noveKolo() {
         riadicKariet.noveKolo()
         hrac.noveKolo()
     }
 
-    //BojFragment
+    /**
+     * Metóda slúžiaca na zahranie karty na základe čísla karty zadaného ako parameter.
+     * Po prijatí výnimky MartveNpc je skontrolvané či je aktuálny level rovný celkovému počtu levelov čo by znamenalo vyhodenie výnimky VyhraException.
+     * V prípade, že sa dané hodnoty nerovnajú je zavolaná metóda koniecLevelu pre riadič a informovanie hráča o postupe do ďalšieho levelu.
+     * Okrem iného je v tejto časti vyhodená aj výnimka DalsiLevelException.
+     *
+     * @param cisloKarty
+     */
     fun zahranieKarty(cisloKarty: Int) {
         try {
             riadicKariet.zahrajKartu(cisloKarty, hrac)
@@ -80,12 +98,18 @@ class HraViewModel : ViewModel() {
         }
     }
 
-    //BojFragment
+    /**
+     * Slúži na vykonanie akcie nepriateľa voči hráčovi.
+     */
     fun nepriatelUtok() {
         hrac.nepriatel?.vykonajAkciu(hrac)
     }
 
-    //VyberKartyFragment
+    /**
+     * Slúži na pridanie karty do hráčovho balíčku, na základe čísla karty zadaného ako parameter.
+     *
+     * @param cisloKarty
+     */
     fun hracSiVybralKart(cisloKarty: Int) {
         hrac.pridajKartu(riadicKariet.kartaNaVyber(cisloKarty))
         riadicKariet.zahodKartyNaVyber()
