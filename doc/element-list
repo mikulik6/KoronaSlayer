@@ -1,0 +1,13 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:fri.uniza.sk.mikulik6.koronaSlayer.recyclerView.adapter/ZoznamKarietAdapter.ZoznamKarietViewHolder///PointingToDeclaration/fri/uniza/sk/mikulik6/koronaSlayer/recyclerView/adapter/ZoznamKarietAdapter.ZoznamKarietViewHolder.html
+fri.uniza.sk.mikulik6.koronaSlayer
+fri.uniza.sk.mikulik6.koronaSlayer.karty.riadenie
+fri.uniza.sk.mikulik6.koronaSlayer.karty.typyKariet
+fri.uniza.sk.mikulik6.koronaSlayer.mapa
+fri.uniza.sk.mikulik6.koronaSlayer.npc
+fri.uniza.sk.mikulik6.koronaSlayer.postavy
+fri.uniza.sk.mikulik6.koronaSlayer.recyclerView.adapter
+fri.uniza.sk.mikulik6.koronaSlayer.recyclerView.zoznamKarietData
+fri.uniza.sk.mikulik6.koronaSlayer.vynimky
+

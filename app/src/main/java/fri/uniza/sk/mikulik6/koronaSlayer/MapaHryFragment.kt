@@ -41,9 +41,9 @@ class MapaHryFragment : Fragment() {
 
             //Nastavenie obrázku tlačidla
             if (viewModel.mapa.choroba(pocitadlo - 1) is BakterialnaChoroba){
-                (tlacidlo as (Button)).setCompoundDrawablesWithIntrinsicBounds(R.drawable.bakteria_24, 0, 0, 0)
+                (tlacidlo as (Button)).setCompoundDrawablesWithIntrinsicBounds(R.drawable.bakteria_24_siva, 0, 0, 0)
             } else {
-                (tlacidlo as (Button)).setCompoundDrawablesWithIntrinsicBounds(R.drawable.virus_24, 0, 0, 0)
+                (tlacidlo as (Button)).setCompoundDrawablesWithIntrinsicBounds(R.drawable.virus_24_siva, 0, 0, 0)
             }
 
             val cisloLevelu = pocitadlo
